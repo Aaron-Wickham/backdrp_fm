@@ -1,13 +1,15 @@
 # Test Coverage Summary
 
 ## Overview
-Test suite created for the BACKDRP.FM Flutter application with comprehensive coverage across models, BLoCs, services, and UI components.
+Comprehensive test suite for the BACKDRP.FM Flutter application covering models, BLoCs, services, and UI components.
 
 ## Test Statistics
-- **Total Tests**: 181 tests created
-- **Passing Tests**: ✅ **179 tests** (98.9%)
+- **Total Tests**: 181 tests
+- **Passing Tests**: ✅ **179 tests** (98.9% pass rate)
 - **Failing Tests**: ⚠️ **2 tests** (1.1% - ProfileBloc error stream handling)
 - **Coverage Areas**: 11 major components
+- **Test Files**: 10+
+- **Lines of Test Code**: ~2,000+
 
 ## Test Files Created
 
@@ -264,12 +266,37 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - **Documentation**: Document complex test scenarios
 - **Coverage Goals**: Aim for 80%+ coverage on critical paths
 
+## Running Tests
+
+### Quick Commands
+
+```bash
+# Run all tests
+flutter test
+
+# Run tests with coverage
+flutter test --coverage
+
+# Run specific test file
+flutter test test/bloc/video/video_bloc_test.dart
+
+# Run tests in watch mode
+flutter test --watch
+
+# Run with specific environment
+flutter test --dart-define=ENVIRONMENT=development
+```
+
+### Generate Mocks
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+
 ---
 
 **Last Updated**: January 2025
 **Test Framework**: Flutter Test + BLoC Test + Mockito
-**Total Test Files**: 10+
-**Total Lines of Test Code**: ~2,000+
 
 ## Recent Fixes (Latest Sessions)
 

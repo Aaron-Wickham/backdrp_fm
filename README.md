@@ -5,7 +5,7 @@
 BACKDRP.FM is a Flutter-based application designed to be a centralized hub for live music content, helping users discover and explore their favorite artists' performances across various platforms while providing easy access to social media links and streaming services.
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.9.2-02569B?logo=flutter)](https://flutter.dev/)
-[![Firebase](https://img.shields.io/badge/Firebase-Cloud-FFCA28?logo=firebase)](https://firebase.google.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-Multi--Environment-FFCA28?logo=firebase)](https://firebase.google.com/)
 [![License](https://img.shields.io/badge/License-Private-red)]()
 
 ## 📱 Features
@@ -18,15 +18,8 @@ BACKDRP.FM is a Flutter-based application designed to be a centralized hub for l
 - **Archive Filtering**: Filter content by genre, artist, and location
 - **Video Playback**: Integrated YouTube player for seamless viewing
 - **Social Sharing**: Share videos directly to social platforms
+- **Multi-Environment**: Separate dev, staging, and production environments
 - **Responsive Design**: Works on iOS, Android, and Web
-
-### Core Functionality
-- 🎬 **Video Library**: Curated collection of live music performances
-- 🎤 **Artist Directory**: Comprehensive artist profiles with social integration
-- 🔍 **Advanced Search**: Multi-criteria search with real-time results
-- 💾 **User Collections**: Save and organize favorite content
-- 🎨 **Minimalist UI**: Clean black/white design with sharp edges and uppercase typography
-- 📊 **Analytics**: Track views, likes, and engagement
 
 ## 🏗️ Architecture
 
@@ -35,8 +28,8 @@ BACKDRP.FM is a Flutter-based application designed to be a centralized hub for l
 - **State Management**: BLoC Pattern (flutter_bloc, hydrated_bloc)
 - **Backend**: Firebase (Auth, Firestore, Storage)
 - **Video Player**: youtube_player_flutter
-- **Routing**: Flutter Navigator 2.0
 - **Storage**: HydratedBloc for persistence
+- **Environment Management**: flutter_dotenv with multi-environment support
 
 ### Project Structure
 ```
@@ -54,29 +47,17 @@ lib/
 │   └── playlist.dart     # Playlist model
 ├── screens/              # UI screens
 │   ├── auth/            # Login & signup screens
-│   ├── home_screen.dart  # Featured videos feed
-│   ├── archive_screen.dart # Filterable video archive
-│   ├── artists_screen.dart # Artist directory
-│   ├── search_screen.dart  # Search interface
-│   ├── video_detail_screen.dart # Video player & details
-│   ├── artist_detail_screen.dart # Artist profile
-│   └── profile_screen.dart # User profile & settings
+│   ├── settings/        # Settings screens (notifications, privacy)
+│   └── *.dart           # Main app screens
 ├── services/             # Business logic & API calls
 │   ├── auth_service.dart    # Firebase Auth integration
 │   ├── video_service.dart   # Video CRUD operations
 │   ├── artist_service.dart  # Artist CRUD operations
 │   └── user_service.dart    # User profile management
 ├── widgets/              # Reusable components
-│   ├── cards/           # Video & artist cards
-│   ├── common/          # Loading, error, empty states
-│   └── buttons/         # Custom button components
 ├── theme/                # Design system
-│   ├── app_colors.dart   # Color palette
-│   ├── app_typography.dart # Text styles
-│   ├── app_spacing.dart  # Spacing constants
-│   └── app_theme.dart    # Theme configuration
 ├── config/               # Configuration
-│   └── environment.dart  # Environment-based configs
+│   └── environment.dart  # Multi-environment configs
 └── main.dart            # App entry point
 ```
 
@@ -85,15 +66,15 @@ lib/
 ### Prerequisites
 - Flutter SDK 3.9.2 or higher
 - Dart SDK 3.0 or higher
-- Firebase account with project setup
-- Node.js (for Firebase CLI and seeding)
+- Firebase account with projects for dev/staging/prod
+- Node.js 16+ (for Firebase CLI and seeding)
 - Code editor (VS Code, Android Studio, or IntelliJ)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Aaron-Wickham/backdrp_fm.git
    cd backdrp_fm
    ```
 
@@ -102,99 +83,110 @@ lib/
    flutter pub get
    ```
 
-3. **Firebase Setup**
-   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
-   - Enable Authentication (Email/Password)
-   - Create Firestore database
-   - Enable Firebase Storage
-   - Download and configure Firebase config files:
-     - iOS: `ios/Runner/GoogleService-Info.plist`
-     - Android: `android/app/google-services.json`
-     - Web: Auto-configured via FlutterFire CLI
-
-4. **FlutterFire Configuration**
+3. **Set up environment files**
    ```bash
-   # Install FlutterFire CLI
-   dart pub global activate flutterfire_cli
+   cp .env.example .env.development
+   cp .env.example .env.staging
+   cp .env.example .env.production
 
-   # Configure Firebase for your project
-   flutterfire configure
+   # Edit each file with your Firebase project IDs
    ```
 
-5. **Firestore Indexes**
+4. **Install Node dependencies** (for seed scripts)
    ```bash
-   # Deploy Firestore indexes
-   firebase deploy --only firestore:indexes
+   npm install
    ```
 
-6. **Seed Test Data** (Optional)
-   ```bash
-   # Seed development database with test data
-   node seed-all-test-data.js
-   ```
+### Firebase Setup
+
+The app uses **three separate Firebase projects** for complete environment isolation:
+
+- `backdrp-fm-dev` - Development
+- `backdrp-fm-staging` - Staging/QA
+- `backdrp-fm-prod-4215e` - Production
+
+**Firebase configuration files** (already generated):
+- `lib/firebase_options_dev.dart`
+- `lib/firebase_options_staging.dart`
+- `lib/firebase_options_prod.dart`
+
+**Deploy Firestore rules and indexes to all environments:**
+```bash
+# Development
+firebase deploy --only firestore --project backdrp-fm-dev
+
+# Staging
+firebase deploy --only firestore --project backdrp-fm-staging
+
+# Production
+firebase deploy --only firestore --project backdrp-fm-prod-4215e
+```
 
 ### Running the App
 
-**Development Mode**
+**Development Mode** (default)
 ```bash
-# iOS
-flutter run -d ios
-
-# Android
-flutter run -d android
-
-# Web (Chrome)
 flutter run -d chrome
-
-# Web with debug
-flutter run -d chrome --debug
+# or
+flutter run -d ios
+# or
+flutter run -d android
 ```
 
-**Production Build**
+**Staging Mode**
 ```bash
-# iOS
-flutter build ios --release
-
-# Android
-flutter build apk --release
-flutter build appbundle --release
-
-# Web
-flutter build web --release
+flutter run -d chrome --dart-define=ENVIRONMENT=staging
 ```
+
+**Production Mode**
+```bash
+flutter run -d chrome --dart-define=ENVIRONMENT=production
+```
+
+### Seed Test Data
+
+```bash
+# Seed development environment
+node seed-all-test-data.js --project=backdrp-fm-dev
+
+# Seed staging environment
+node seed-all-test-data.js --project=backdrp-fm-staging
+
+# Never seed production - manual data only
+```
+
+This creates:
+- 6 test videos (5 published, 1 draft)
+- 5 test artists
+- 2 test users
+- 2 test playlists
 
 ## 🔧 Configuration
 
-### Environment Setup
+### Environment Variables
 
-The app uses environment-based collection names to separate dev and production data:
+The app automatically loads environment-specific configuration:
 
-```dart
-// lib/config/environment.dart
-class AppEnvironment {
-  static String getCollectionName(String baseCollection) {
-    return 'dev_$baseCollection'; // or just baseCollection for production
-  }
-}
-```
+- `.env.development` - Dev settings (analytics OFF)
+- `.env.staging` - Staging settings (analytics ON)
+- `.env.production` - Prod settings (all features ON)
 
-### Firebase Collections
+### Firestore Collections
 
-**Development Collections:**
-- `dev_videos` - Video metadata and details
-- `dev_artists` - Artist profiles and information
-- `dev_users` - User accounts and preferences
-- `dev_playlists` - User-created playlists
+Each environment uses separate collections for complete data isolation:
 
-**Production Collections:**
-- `videos`, `artists`, `users`, `playlists`
+| Environment | Collection Prefix | Example |
+|-------------|------------------|---------|
+| Development | `dev_` | `dev_videos`, `dev_artists` |
+| Staging | `staging_` | `staging_videos`, `staging_artists` |
+| Production | _(none)_ | `videos`, `artists` |
 
-### Admin Account
+### Environment Indicators
 
-Admin access is granted to: `backdrp.fm@gmail.com`
-- Full CRUD access to videos and artists
-- User management capabilities
-- Content moderation tools
+In debug mode, you'll see a banner showing the current environment:
+- 🟢 **DEVELOPMENT** (green banner)
+- 🟠 **STAGING** (orange banner)
+- 🔴 **PRODUCTION** (red banner, only in debug)
 
 ## 🎨 Design System
 
@@ -209,16 +201,12 @@ secondary: #FFFFFF        // Accent (white on black)
 border: #1A1A1A          // Subtle borders
 ```
 
-### Typography
-- All text is UPPERCASE with wide letter spacing (1.5-3.0)
-- Primary font: System default with customized weights
-- Headings: 700 weight, Body: 400-500 weight
-
 ### Design Principles
 - **Minimalist**: Clean, distraction-free interface
 - **High Contrast**: Pure black and white for readability
 - **Sharp Edges**: No rounded corners (borderRadius: 0)
 - **Consistent Spacing**: 4px, 8px, 12px, 16px, 24px, 32px increments
+- **UPPERCASE Typography**: All text uppercase with wide letter spacing
 
 ## 🧪 Testing
 
@@ -232,26 +220,16 @@ flutter test --coverage
 
 # Run specific test file
 flutter test test/services/artist_service_test.dart
-
-# Run tests in watch mode
-flutter test --watch
 ```
 
-### Test Structure
-```
-test/
-├── bloc/                 # BLoC unit tests
-├── models/              # Model tests
-├── services/            # Service integration tests
-├── screens/             # Widget tests
-└── mocks/               # Mock data and services
-```
+### Test Coverage
+- **179/181 tests passing** (98.9% pass rate)
+- Comprehensive BLoC tests
+- Model serialization tests
+- Widget interaction tests
+- Authentication flow tests
 
-### Generate Mocks
-```bash
-# Generate mock files for testing
-dart run build_runner build --delete-conflicting-outputs
-```
+See [TEST_COVERAGE_SUMMARY.md](TEST_COVERAGE_SUMMARY.md) for detailed breakdown.
 
 ## 📊 Database Schema
 
@@ -282,10 +260,7 @@ dart run build_runner build --delete-conflicting-outputs
   views: number,
   featured: boolean,
   sortOrder: number,
-  tags: string[],
-  soundcloudUrl?: string,
-  spotifyPlaylistId?: string,
-  appleMusicPlaylistId?: string
+  tags: string[]
 }
 ```
 
@@ -308,53 +283,38 @@ dart run build_runner build --delete-conflicting-outputs
 }
 ```
 
-### Users Collection
-```typescript
-{
-  uid: string,
-  email: string,
-  displayName: string,
-  profileImageUrl: string,
-  role: 'admin' | 'user',
-  likedVideos: string[],
-  savedVideos: string[],
-  emailSubscribed: boolean,
-  pushSubscribed: boolean,
-  preferences: {
-    favoriteGenres: string[],
-    notificationPreferences: {
-      newSets: boolean,
-      artistUpdates: boolean,
-      weeklyDigest: boolean
-    }
-  },
-  createdDate?: timestamp,
-  lastActive?: timestamp
-}
-```
+See [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) for complete schema details.
 
-## 🔐 Security Rules
+## 🔐 Security
 
-See `firestore.rules` for detailed security configuration.
+### Firestore Rules
+- Separate rules for `dev_*`, `staging_*`, and production collections
+- Published content readable by all
+- Writes restricted to authenticated users
+- Admin role required for content management
 
-**Key Rules:**
-- Users can read all published content
-- Users can only write to their own user document
-- Admin users have full write access
-- Unauthenticated users have read-only access
+### Security Best Practices
+- Environment files in `.gitignore`
+- Firebase config files in `.gitignore`
+- Separate Firebase projects per environment
+- No sensitive keys committed to repository
 
-## 🚧 Development Roadmap
+## 📖 Documentation
+
+- [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) - Multi-environment configuration guide
+- [TEST_COVERAGE_SUMMARY.md](TEST_COVERAGE_SUMMARY.md) - Testing documentation
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+
+## 🚧 Roadmap
 
 ### High Priority
-- [ ] Add notification settings screen
-- [ ] Add privacy settings screen
-- [ ] Make archive filters dynamic (pull from Firestore)
-- [ ] Add offline support/caching
+- [ ] Add Firebase Crashlytics
 - [ ] Implement proper logging framework
-- [ ] Add crash reporting (Crashlytics/Sentry)
+- [ ] Add CI/CD pipeline (GitHub Actions)
+- [ ] Implement pagination for video/artist lists
+- [ ] Add offline support/caching
 
 ### Medium Priority
-- [ ] Pagination for video/artist lists
 - [ ] Search improvements (Algolia integration)
 - [ ] OAuth providers (Google, Apple, Spotify)
 - [ ] Email verification flow
@@ -365,60 +325,29 @@ See `firestore.rules` for detailed security configuration.
 - [ ] Watch history tracking
 - [ ] Similar artists recommendations
 - [ ] Tour dates integration
-- [ ] Setlist/tracklist feature
 - [ ] Deep linking support
 - [ ] Multi-language support
 
-See individual TODO comments in the codebase for detailed improvement opportunities (50+ TODOs documented).
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow and guidelines.
 
 ## 📝 Scripts
 
-### Database Seeding
-```bash
-# Seed all test data (videos, artists, users, playlists)
-node seed-all-test-data.js
-
-# Seed specific collections
-node seed-data.js
-node seed-firestore.js
-```
-
 ### Firebase Deployment
 ```bash
-# Deploy Firestore rules
-firebase deploy --only firestore:rules
-
-# Deploy Firestore indexes
-firebase deploy --only firestore:indexes
-
-# Deploy all
-firebase deploy
+# Deploy to specific environment
+firebase deploy --only firestore --project backdrp-fm-dev
+firebase deploy --only firestore --project backdrp-fm-staging
+firebase deploy --only firestore --project backdrp-fm-prod-4215e
 ```
 
-## 🤝 Contributing
-
-This is a private project. For internal team members:
-
-1. Create a feature branch from `main`
-2. Make your changes with clear commit messages
-3. Run tests: `flutter test`
-4. Push and create a pull request
-5. Request code review
-
-### Code Style
-- Follow Flutter/Dart style guide
-- Use meaningful variable names
-- Add comments for complex logic
-- Keep functions small and focused
-- Write tests for new features
-
-## 🐛 Known Issues
-
-- Web: YouTube player autoplay may be blocked by browser policies
-- iOS: Requires proper code signing for physical device deployment
-- Search: Client-side filtering can be slow with large datasets (needs Algolia)
-
-See GitHub Issues for full list and status updates.
+### Database Seeding
+```bash
+# Seed specific environment
+node seed-all-test-data.js --project=backdrp-fm-dev
+node seed-all-test-data.js --project=backdrp-fm-staging
+```
 
 ## 📄 License
 
@@ -428,6 +357,7 @@ This project is private and proprietary. All rights reserved.
 
 **Project Lead**: Aaron Wickham
 **Contact**: backdrp.fm@gmail.com
+**Repository**: https://github.com/Aaron-Wickham/backdrp_fm
 
 ## 🙏 Acknowledgments
 
@@ -439,5 +369,3 @@ This project is private and proprietary. All rights reserved.
 ---
 
 **Built with ❤️ for the music community**
-
-For detailed setup instructions, see [DEV_SETUP.md](DEV_SETUP.md)
