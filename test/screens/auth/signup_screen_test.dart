@@ -39,6 +39,7 @@ void main() {
 
       // Tap signup button without entering name
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -55,6 +56,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -71,6 +73,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -90,6 +93,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -106,6 +110,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -122,6 +127,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
@@ -141,6 +147,7 @@ void main() {
 
       // Tap signup button
       final signupButton = find.byType(ElevatedButton);
+      await tester.ensureVisible(signupButton);
       await tester.tap(signupButton);
       await tester.pump();
 
