@@ -59,3 +59,41 @@ service-account-key.json
 # Firebase configuration files (platform-specific)
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# Firebase Emulator data and logs
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+emulator-data/
+
+# Integration test artifacts
+integration_test/screenshots/
+integration_test/*.png
+integration_test/*.jpg
+integration_test/failures/
+
+# Code coverage
+lcov.info
+coverage/
+test/coverage/
+
+# macOS specific
+*.dSYM.zip
+*.dSYM
+
+# Xcode user-specific files
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Temporary files
+*.tmp
+*.temp
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# VS Code specific (if you want to ignore)
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
