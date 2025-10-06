@@ -107,8 +107,8 @@ void main() {
       // Simulate like action
       mockVideoBloc.add(LikeVideo(videoId: testVideo.id, userId: testUser.uid));
 
-      verify(() => mockVideoBloc
-          .add(LikeVideo(videoId: testVideo.id, userId: testUser.uid))).called(1);
+      verify(() => mockVideoBloc.add(
+          LikeVideo(videoId: testVideo.id, userId: testUser.uid))).called(1);
     });
 
     test('user can save video when authenticated', () {
@@ -121,8 +121,8 @@ void main() {
       // Simulate save action
       mockVideoBloc.add(SaveVideo(videoId: testVideo.id, userId: testUser.uid));
 
-      verify(() => mockVideoBloc
-          .add(SaveVideo(videoId: testVideo.id, userId: testUser.uid))).called(1);
+      verify(() => mockVideoBloc.add(
+          SaveVideo(videoId: testVideo.id, userId: testUser.uid))).called(1);
     });
 
     test('user liked status is tracked correctly', () {

@@ -39,20 +39,26 @@ class AppSpacing {
   static const EdgeInsets paddingAllSmall = EdgeInsets.all(paddingSmall);
   static const EdgeInsets paddingAllLarge = EdgeInsets.all(paddingLarge);
 
-  static const EdgeInsets paddingHorizontal = EdgeInsets.symmetric(horizontal: padding);
-  static const EdgeInsets paddingVertical = EdgeInsets.symmetric(vertical: padding);
+  static const EdgeInsets paddingHorizontal =
+      EdgeInsets.symmetric(horizontal: padding);
+  static const EdgeInsets paddingVertical =
+      EdgeInsets.symmetric(vertical: padding);
 
   static const EdgeInsets marginAll = EdgeInsets.all(margin);
   static const EdgeInsets marginAllSmall = EdgeInsets.all(marginSmall);
   static const EdgeInsets marginAllLarge = EdgeInsets.all(marginLarge);
 
-  static const EdgeInsets marginHorizontal = EdgeInsets.symmetric(horizontal: margin);
-  static const EdgeInsets marginVertical = EdgeInsets.symmetric(vertical: margin);
+  static const EdgeInsets marginHorizontal =
+      EdgeInsets.symmetric(horizontal: margin);
+  static const EdgeInsets marginVertical =
+      EdgeInsets.symmetric(vertical: margin);
 
   // Screen Padding
   static const EdgeInsets screenPadding = EdgeInsets.all(md);
-  static const EdgeInsets screenPaddingHorizontal = EdgeInsets.symmetric(horizontal: md);
-  static const EdgeInsets screenPaddingVertical = EdgeInsets.symmetric(vertical: md);
+  static const EdgeInsets screenPaddingHorizontal =
+      EdgeInsets.symmetric(horizontal: md);
+  static const EdgeInsets screenPaddingVertical =
+      EdgeInsets.symmetric(vertical: md);
 }
 
 class AppBorderRadius {

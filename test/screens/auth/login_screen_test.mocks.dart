@@ -27,7 +27,7 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeAuthState_0 extends _i1.SmartFake implements _i2.AuthState {
   _FakeAuthState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthBloc].
@@ -39,20 +39,16 @@ class MockAuthBloc extends _i1.Mock implements _i3.AuthBloc {
   }
 
   @override
-  _i2.AuthState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeAuthState_0(this, Invocation.getter(#state)),
-          )
-          as _i2.AuthState);
+  _i2.AuthState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeAuthState_0(this, Invocation.getter(#state)),
+      ) as _i2.AuthState);
 
   @override
-  _i4.Stream<_i2.AuthState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.AuthState>.empty(),
-          )
-          as _i4.Stream<_i2.AuthState>);
+  _i4.Stream<_i2.AuthState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.AuthState>.empty(),
+      ) as _i4.Stream<_i2.AuthState>);
 
   @override
   bool get isClosed =>
@@ -60,40 +56,39 @@ class MockAuthBloc extends _i1.Mock implements _i3.AuthBloc {
           as bool);
 
   @override
-  _i4.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(#close, []),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void add(_i5.AuthEvent? event) => super.noSuchMethod(
-    Invocation.method(#add, [event]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#add, [event]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onEvent(_i5.AuthEvent? event) => super.noSuchMethod(
-    Invocation.method(#onEvent, [event]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#onEvent, [event]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void emit(_i2.AuthState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#emit, [state]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void on<E extends _i5.AuthEvent>(
     _i6.EventHandler<E, _i2.AuthState>? handler, {
     _i6.EventTransformer<E>? transformer,
-  }) => super.noSuchMethod(
-    Invocation.method(#on, [handler], {#transformer: transformer}),
-    returnValueForMissingStub: null,
-  );
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(#on, [handler], {#transformer: transformer}),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onTransition(_i6.Transition<_i5.AuthEvent, _i2.AuthState>? transition) =>
@@ -104,19 +99,19 @@ class MockAuthBloc extends _i1.Mock implements _i3.AuthBloc {
 
   @override
   void onChange(_i6.Change<_i2.AuthState>? change) => super.noSuchMethod(
-    Invocation.method(#onChange, [change]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#onChange, [change]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#addError, [error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#onError, [error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
 }

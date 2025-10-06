@@ -72,7 +72,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(_isLiked ? 'Added to liked videos' : 'Removed from liked videos'),
+          content: Text(
+              _isLiked ? 'Added to liked videos' : 'Removed from liked videos'),
           duration: const Duration(seconds: 1),
         ),
       );
@@ -95,7 +96,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(_isSaved ? 'Added to saved videos' : 'Removed from saved videos'),
+          content: Text(
+              _isSaved ? 'Added to saved videos' : 'Removed from saved videos'),
           duration: const Duration(seconds: 1),
         ),
       );
@@ -105,7 +107,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen> {
   }
 
   void _shareVideo() {
-    final youtubeUrl = 'https://www.youtube.com/watch?v=${widget.video.youtubeId}';
+    final youtubeUrl =
+        'https://www.youtube.com/watch?v=${widget.video.youtubeId}';
     final shareText = '''
 🎵 ${widget.video.title}
 🎤 ${widget.video.artist}
@@ -235,7 +238,8 @@ Watch on BACKDRP.FM: $youtubeUrl
                     children: [
                       Expanded(
                         child: _buildActionButton(
-                          icon: _isLiked ? Icons.favorite : Icons.favorite_border,
+                          icon:
+                              _isLiked ? Icons.favorite : Icons.favorite_border,
                           label: 'LIKE',
                           onTap: _toggleLike,
                           isActive: _isLiked,
@@ -244,7 +248,8 @@ Watch on BACKDRP.FM: $youtubeUrl
                       const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: _buildActionButton(
-                          icon: _isSaved ? Icons.bookmark : Icons.bookmark_border,
+                          icon:
+                              _isSaved ? Icons.bookmark : Icons.bookmark_border,
                           label: 'SAVE',
                           onTap: _toggleSave,
                           isActive: _isSaved,
@@ -314,8 +319,7 @@ Watch on BACKDRP.FM: $youtubeUrl
                             ),
                           if (widget.video.publishedDate != null)
                             const SizedBox(height: AppSpacing.sm),
-                          if (widget.video.genres.isNotEmpty)
-                            _buildGenreRow(),
+                          if (widget.video.genres.isNotEmpty) _buildGenreRow(),
                         ],
                       ),
 
@@ -553,8 +557,18 @@ Watch on BACKDRP.FM: $youtubeUrl
 
   String _formatDate(DateTime date) {
     final months = [
-      'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-      'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
+      'JAN',
+      'FEB',
+      'MAR',
+      'APR',
+      'MAY',
+      'JUN',
+      'JUL',
+      'AUG',
+      'SEP',
+      'OCT',
+      'NOV',
+      'DEC'
     ];
     return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }

@@ -31,7 +31,8 @@ class AppTextButton extends StatelessWidget {
               width: 20,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
-                valueColor: AlwaysStoppedAnimation<Color>(AppColors.textPrimary),
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.textPrimary),
               ),
             )
           : icon != null

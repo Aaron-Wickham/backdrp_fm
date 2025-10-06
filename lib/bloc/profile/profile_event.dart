@@ -67,7 +67,14 @@ class UpdateNotificationSettings extends ProfileEvent {
   });
 
   @override
-  List<Object?> get props => [userId, newSets, artistUpdates, weeklyDigest, emailSubscribed, pushSubscribed];
+  List<Object?> get props => [
+        userId,
+        newSets,
+        artistUpdates,
+        weeklyDigest,
+        emailSubscribed,
+        pushSubscribed
+      ];
 }
 
 class ToggleEmailSubscription extends ProfileEvent {

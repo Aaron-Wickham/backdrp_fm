@@ -65,10 +65,8 @@ void main() {
         // Assert
         expect(artistId, isNotNull);
 
-        final doc = await fakeFirestore
-            .collection('dev_artists')
-            .doc(artistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('dev_artists').doc(artistId).get();
         expect(doc.exists, isTrue);
         expect(doc.data()?['name'], 'New Artist');
         expect(doc.data()?['bio'], 'Bio text');
@@ -84,10 +82,8 @@ void main() {
         // Assert
         expect(artistId, isNotNull);
 
-        final doc = await fakeFirestore
-            .collection('dev_artists')
-            .doc(artistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('dev_artists').doc(artistId).get();
         expect(doc.data()?['bio'], '');
         expect(doc.data()?['profileImageUrl'], '');
         expect(doc.data()?['genres'], []);
@@ -123,10 +119,8 @@ void main() {
         // Assert
         expect(result, isTrue);
 
-        final doc = await fakeFirestore
-            .collection('dev_artists')
-            .doc(artistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('dev_artists').doc(artistId).get();
         expect(doc.data()?['name'], 'Updated Name');
         expect(doc.data()?['bio'], 'Updated bio');
         expect(doc.data()?['location'], 'Paris');
@@ -318,6 +312,5 @@ void main() {
         expect(artists.first.name, 'Active Test');
       });
     });
-
   });
 }

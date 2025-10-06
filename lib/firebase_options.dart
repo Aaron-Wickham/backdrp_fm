@@ -72,5 +72,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'backdrop-fm.firebasestorage.app',
     iosBundleId: 'com.backdrpfm.app',
   );
-
 }

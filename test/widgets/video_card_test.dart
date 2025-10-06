@@ -43,13 +43,15 @@ void main() {
   }
 
   group('VideoCardWidget', () {
-    testWidgets('renders video title in uppercase', (WidgetTester tester) async {
+    testWidgets('renders video title in uppercase',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
       // The widget converts title to uppercase
       expect(find.text('TEST VIDEO TITLE'), findsOneWidget);
     });
 
-    testWidgets('renders artist name in uppercase', (WidgetTester tester) async {
+    testWidgets('renders artist name in uppercase',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
       // The widget converts artist name to uppercase
       expect(find.text('TEST ARTIST'), findsOneWidget);

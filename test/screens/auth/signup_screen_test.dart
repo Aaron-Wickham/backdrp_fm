@@ -10,7 +10,8 @@ void main() {
   }
 
   group('SignupScreen Widget Tests', () {
-    testWidgets('renders all UI elements correctly', (WidgetTester tester) async {
+    testWidgets('renders all UI elements correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Verify app name is displayed
@@ -21,10 +22,12 @@ void main() {
       expect(find.byType(TextFormField), findsNWidgets(4));
 
       // Verify all fields
-      expect(find.widgetWithText(TextFormField, 'DISPLAY NAME'), findsOneWidget);
+      expect(
+          find.widgetWithText(TextFormField, 'DISPLAY NAME'), findsOneWidget);
       expect(find.widgetWithText(TextFormField, 'EMAIL'), findsOneWidget);
       expect(find.widgetWithText(TextFormField, 'PASSWORD'), findsOneWidget);
-      expect(find.widgetWithText(TextFormField, 'CONFIRM PASSWORD'), findsOneWidget);
+      expect(find.widgetWithText(TextFormField, 'CONFIRM PASSWORD'),
+          findsOneWidget);
 
       // Verify signup button
       expect(find.text('CREATE ACCOUNT'), findsAtLeastNWidgets(1));
@@ -47,7 +50,8 @@ void main() {
       expect(find.text('Please enter your name'), findsOneWidget);
     });
 
-    testWidgets('validates email field for empty input', (WidgetTester tester) async {
+    testWidgets('validates email field for empty input',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter display name but not email
@@ -64,7 +68,8 @@ void main() {
       expect(find.text('Please enter your email'), findsOneWidget);
     });
 
-    testWidgets('validates email field for invalid format', (WidgetTester tester) async {
+    testWidgets('validates email field for invalid format',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter invalid email
@@ -81,7 +86,8 @@ void main() {
       expect(find.text('Please enter a valid email'), findsOneWidget);
     });
 
-    testWidgets('validates password field for empty input', (WidgetTester tester) async {
+    testWidgets('validates password field for empty input',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter name and email but no password
@@ -101,7 +107,8 @@ void main() {
       expect(find.text('Please enter your password'), findsOneWidget);
     });
 
-    testWidgets('validates password minimum length', (WidgetTester tester) async {
+    testWidgets('validates password minimum length',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter short password
@@ -115,10 +122,12 @@ void main() {
       await tester.pump();
 
       // Verify validation error
-      expect(find.text('Password must be at least 6 characters'), findsOneWidget);
+      expect(
+          find.text('Password must be at least 6 characters'), findsOneWidget);
     });
 
-    testWidgets('validates password confirmation field for empty input', (WidgetTester tester) async {
+    testWidgets('validates password confirmation field for empty input',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter password but not confirmation
@@ -142,7 +151,8 @@ void main() {
       final passwordField = find.widgetWithText(TextFormField, 'PASSWORD');
       await tester.enterText(passwordField, 'password123');
 
-      final confirmField = find.widgetWithText(TextFormField, 'CONFIRM PASSWORD');
+      final confirmField =
+          find.widgetWithText(TextFormField, 'CONFIRM PASSWORD');
       await tester.enterText(confirmField, 'password456');
 
       // Tap signup button
@@ -155,7 +165,8 @@ void main() {
       expect(find.text('Passwords do not match'), findsOneWidget);
     });
 
-    testWidgets('password visibility toggle works for password field', (WidgetTester tester) async {
+    testWidgets('password visibility toggle works for password field',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Tap visibility toggle (first one)
@@ -164,10 +175,12 @@ void main() {
       await tester.pump();
 
       // Verify icon changed
-      expect(find.byIcon(Icons.visibility_off_outlined), findsAtLeastNWidgets(1));
+      expect(
+          find.byIcon(Icons.visibility_off_outlined), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('password visibility toggle works for confirm password field', (WidgetTester tester) async {
+    testWidgets('password visibility toggle works for confirm password field',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Count initial visibility icons
@@ -178,7 +191,8 @@ void main() {
       await tester.pump();
 
       // Verify icon changed
-      expect(find.byIcon(Icons.visibility_off_outlined), findsAtLeastNWidgets(1));
+      expect(
+          find.byIcon(Icons.visibility_off_outlined), findsAtLeastNWidgets(1));
     });
 
     testWidgets('disposes controllers on dispose', (WidgetTester tester) async {

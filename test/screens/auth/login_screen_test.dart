@@ -16,7 +16,8 @@ void main() {
 
   setUp(() {
     mockAuthBloc = MockAuthBloc();
-    when(mockAuthBloc.stream).thenAnswer((_) => Stream.value(const AuthInitial()));
+    when(mockAuthBloc.stream)
+        .thenAnswer((_) => Stream.value(const AuthInitial()));
     when(mockAuthBloc.state).thenReturn(const AuthInitial());
   });
 
@@ -30,7 +31,8 @@ void main() {
   }
 
   group('LoginScreen Widget Tests', () {
-    testWidgets('renders all UI elements correctly', (WidgetTester tester) async {
+    testWidgets('renders all UI elements correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Verify app name is displayed
@@ -56,7 +58,8 @@ void main() {
       expect(find.text('SIGN UP'), findsOneWidget);
     });
 
-    testWidgets('email field validates empty input', (WidgetTester tester) async {
+    testWidgets('email field validates empty input',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Find and tap the login button without entering email
@@ -68,7 +71,8 @@ void main() {
       expect(find.text('Please enter your email'), findsOneWidget);
     });
 
-    testWidgets('email field validates invalid email format', (WidgetTester tester) async {
+    testWidgets('email field validates invalid email format',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter invalid email
@@ -84,7 +88,8 @@ void main() {
       expect(find.text('Please enter a valid email'), findsOneWidget);
     });
 
-    testWidgets('password field validates empty input', (WidgetTester tester) async {
+    testWidgets('password field validates empty input',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter valid email but no password
@@ -100,7 +105,8 @@ void main() {
       expect(find.text('Please enter your password'), findsOneWidget);
     });
 
-    testWidgets('password field validates minimum length', (WidgetTester tester) async {
+    testWidgets('password field validates minimum length',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter valid email but short password
@@ -116,10 +122,12 @@ void main() {
       await tester.pump();
 
       // Verify validation error is shown
-      expect(find.text('Password must be at least 6 characters'), findsOneWidget);
+      expect(
+          find.text('Password must be at least 6 characters'), findsOneWidget);
     });
 
-    testWidgets('password visibility toggle works', (WidgetTester tester) async {
+    testWidgets('password visibility toggle works',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Tap visibility toggle
@@ -132,7 +140,8 @@ void main() {
       expect(find.byIcon(Icons.visibility_off_outlined), findsOneWidget);
     });
 
-    testWidgets('dispatches login event with valid credentials', (WidgetTester tester) async {
+    testWidgets('dispatches login event with valid credentials',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Enter valid credentials
@@ -154,9 +163,11 @@ void main() {
       ))).called(1);
     });
 
-    testWidgets('shows loading indicator when AuthLoading', (WidgetTester tester) async {
+    testWidgets('shows loading indicator when AuthLoading',
+        (WidgetTester tester) async {
       when(mockAuthBloc.state).thenReturn(const AuthLoading());
-      when(mockAuthBloc.stream).thenAnswer((_) => Stream.value(const AuthLoading()));
+      when(mockAuthBloc.stream)
+          .thenAnswer((_) => Stream.value(const AuthLoading()));
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pump();
@@ -170,7 +181,8 @@ void main() {
 
     testWidgets('disables inputs when loading', (WidgetTester tester) async {
       when(mockAuthBloc.state).thenReturn(const AuthLoading());
-      when(mockAuthBloc.stream).thenAnswer((_) => Stream.value(const AuthLoading()));
+      when(mockAuthBloc.stream)
+          .thenAnswer((_) => Stream.value(const AuthLoading()));
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pump();
@@ -192,7 +204,8 @@ void main() {
       expect(buttonWidget.onPressed, isNull);
     });
 
-    testWidgets('shows error snackbar on AuthError', (WidgetTester tester) async {
+    testWidgets('shows error snackbar on AuthError',
+        (WidgetTester tester) async {
       when(mockAuthBloc.state).thenReturn(const AuthInitial());
       when(mockAuthBloc.stream).thenAnswer(
         (_) => Stream.fromIterable([
@@ -210,7 +223,8 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
     });
 
-    testWidgets('navigates to signup screen when sign up is tapped', (WidgetTester tester) async {
+    testWidgets('navigates to signup screen when sign up is tapped',
+        (WidgetTester tester) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
       // Tap sign up button
@@ -223,9 +237,11 @@ void main() {
       expect(find.byType(LoginScreen), findsNothing);
     });
 
-    testWidgets('disables sign up navigation when loading', (WidgetTester tester) async {
+    testWidgets('disables sign up navigation when loading',
+        (WidgetTester tester) async {
       when(mockAuthBloc.state).thenReturn(const AuthLoading());
-      when(mockAuthBloc.stream).thenAnswer((_) => Stream.value(const AuthLoading()));
+      when(mockAuthBloc.stream)
+          .thenAnswer((_) => Stream.value(const AuthLoading()));
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pump();

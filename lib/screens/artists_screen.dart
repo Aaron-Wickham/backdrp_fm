@@ -124,7 +124,9 @@ class _ArtistsScreenState extends State<ArtistsScreen> {
                           ? 'Try searching for a different artist name'
                           : 'No artists available at the moment',
                       icon: Icons.person_outline,
-                      actionText: _searchController.text.isNotEmpty ? 'Clear Search' : null,
+                      actionText: _searchController.text.isNotEmpty
+                          ? 'Clear Search'
+                          : null,
                       onAction: _searchController.text.isNotEmpty
                           ? () {
                               _searchController.clear();

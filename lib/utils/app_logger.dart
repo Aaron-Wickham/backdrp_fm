@@ -35,7 +35,8 @@ class AppLogger {
   }
 
   /// Warning log - Use for potentially harmful situations
-  static void warning(dynamic message, {Object? error, StackTrace? stackTrace}) {
+  static void warning(dynamic message,
+      {Object? error, StackTrace? stackTrace}) {
     _logger.w(message, error: error, stackTrace: stackTrace);
   }
 

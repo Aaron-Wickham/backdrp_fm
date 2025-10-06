@@ -41,7 +41,10 @@ class UserService {
       }
 
       if (updates.isNotEmpty) {
-        await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update(updates);
+        await _firestore
+            .collection(AppEnvironment.getCollectionName('users'))
+            .doc(userId)
+            .update(updates);
       }
 
       return true;
@@ -75,7 +78,10 @@ class UserService {
       }
 
       if (updates.isNotEmpty) {
-        await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update(updates);
+        await _firestore
+            .collection(AppEnvironment.getCollectionName('users'))
+            .doc(userId)
+            .update(updates);
       }
 
       return true;
@@ -90,7 +96,10 @@ class UserService {
     List<String> genres,
   ) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update({
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('users'))
+          .doc(userId)
+          .update({
         'preferences.favoriteGenres': genres,
       });
       return true;
@@ -156,13 +165,19 @@ class UserService {
   // Subscribe to email list
   Future<bool> subscribeToEmail(String userId, bool subscribe) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update({
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('users'))
+          .doc(userId)
+          .update({
         'emailSubscribed': subscribe,
       });
 
       // If subscribing, add to mailing list collection
       if (subscribe) {
-        final userDoc = await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).get();
+        final userDoc = await _firestore
+            .collection(AppEnvironment.getCollectionName('users'))
+            .doc(userId)
+            .get();
         final userData = userDoc.data();
 
         if (userData != null) {
@@ -190,7 +205,10 @@ class UserService {
   // Subscribe to push notifications
   Future<bool> subscribeToPush(String userId, bool subscribe) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update({
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('users'))
+          .doc(userId)
+          .update({
         'pushSubscribed': subscribe,
       });
       return true;
@@ -202,7 +220,10 @@ class UserService {
   // Update last active timestamp
   Future<void> updateLastActive(String userId) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).update({
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('users'))
+          .doc(userId)
+          .update({
         'lastActive': FieldValue.serverTimestamp(),
       });
     } catch (e) {
@@ -213,7 +234,10 @@ class UserService {
   // Get user by ID (single fetch)
   Future<AppUser?> getUser(String userId) async {
     try {
-      final doc = await _firestore.collection(AppEnvironment.getCollectionName('users')).doc(userId).get();
+      final doc = await _firestore
+          .collection(AppEnvironment.getCollectionName('users'))
+          .doc(userId)
+          .get();
       if (doc.exists) {
         return AppUser.fromFirestore(doc);
       }

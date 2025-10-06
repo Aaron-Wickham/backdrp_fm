@@ -57,9 +57,8 @@ class VideoService {
     String? city,
     String? country,
   }) {
-    Query query = _firestore
-        .collection('videos')
-        .where('status', isEqualTo: 'published');
+    Query query =
+        _firestore.collection('videos').where('status', isEqualTo: 'published');
 
     if (genre != null) {
       query = query.where('genres', arrayContains: genre);
@@ -157,9 +156,8 @@ class VideoService {
         'duration': duration,
         if (recordedDate != null)
           'recordedDate': Timestamp.fromDate(recordedDate),
-        'publishedDate': status == 'published'
-            ? FieldValue.serverTimestamp()
-            : null,
+        'publishedDate':
+            status == 'published' ? FieldValue.serverTimestamp() : null,
         'status': status,
         'likes': 0,
         'views': 0,

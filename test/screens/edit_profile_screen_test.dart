@@ -143,8 +143,7 @@ void main() {
       await tester.tap(find.text('SAVE CHANGES'));
       await tester.pump();
 
-      expect(
-          find.text('Display name must be at least 2 characters'),
+      expect(find.text('Display name must be at least 2 characters'),
           findsOneWidget);
     });
 

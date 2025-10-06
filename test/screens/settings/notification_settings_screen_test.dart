@@ -178,8 +178,7 @@ void main() {
       expect(find.byType(Switch), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('save button is tappable',
-        (tester) async {
+    testWidgets('save button is tappable', (tester) async {
       when(() => mockAuthBloc.state).thenReturn(AuthAuthenticated(testUser));
       when(() => mockProfileBloc.state).thenReturn(const ProfileInitial());
 

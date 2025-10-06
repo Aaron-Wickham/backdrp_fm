@@ -34,7 +34,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _displayNameController = TextEditingController(text: widget.user.displayName);
+    _displayNameController =
+        TextEditingController(text: widget.user.displayName);
   }
 
   @override
@@ -71,8 +72,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (_selectedImagePath == null) return null;
 
     try {
-      final fileName = 'profile_${widget.user.uid}_${DateTime.now().millisecondsSinceEpoch}.jpg';
-      final ref = FirebaseStorage.instance.ref().child('profile_images/$fileName');
+      final fileName =
+          'profile_${widget.user.uid}_${DateTime.now().millisecondsSinceEpoch}.jpg';
+      final ref =
+          FirebaseStorage.instance.ref().child('profile_images/$fileName');
 
       if (kIsWeb) {
         // For web, use putData
@@ -205,8 +208,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     child: Image.network(
                                       widget.user.profileImageUrl,
                                       fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) =>
-                                          const Icon(
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              const Icon(
                                         Icons.person,
                                         size: 60,
                                         color: AppColors.gray500,

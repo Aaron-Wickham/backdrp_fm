@@ -178,8 +178,7 @@ void main() {
       await tester.pump();
 
       expect(find.text('NO VIDEOS YET'), findsOneWidget);
-      expect(
-          find.text('This artist hasn\'t posted any videos yet'),
+      expect(find.text('This artist hasn\'t posted any videos yet'),
           findsOneWidget);
       expect(find.byIcon(Icons.video_library_outlined), findsOneWidget);
     });

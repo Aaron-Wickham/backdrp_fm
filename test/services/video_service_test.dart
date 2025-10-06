@@ -7,7 +7,8 @@ void main() {
 
   group('Video.extractYouTubeId', () {
     test('extracts ID from standard URL', () {
-      final id = Video.extractYouTubeId('https://youtube.com/watch?v=dQw4w9WgXcQ');
+      final id =
+          Video.extractYouTubeId('https://youtube.com/watch?v=dQw4w9WgXcQ');
       expect(id, 'dQw4w9WgXcQ');
     });
 
@@ -17,7 +18,8 @@ void main() {
     });
 
     test('extracts ID from embed URL', () {
-      final id = Video.extractYouTubeId('https://youtube.com/embed/dQw4w9WgXcQ');
+      final id =
+          Video.extractYouTubeId('https://youtube.com/embed/dQw4w9WgXcQ');
       expect(id, 'dQw4w9WgXcQ');
     });
 
@@ -35,7 +37,8 @@ void main() {
   group('Video.getYouTubeThumbnail', () {
     test('returns correct thumbnail URL', () {
       final thumbnail = Video.getYouTubeThumbnail('dQw4w9WgXcQ');
-      expect(thumbnail, 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');
+      expect(thumbnail,
+          'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');
     });
 
     test('returns correct thumbnail URL for different video ID', () {

@@ -37,14 +37,16 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
 
       if (credential.user != null) {
         // Update display name
-        await credential.user!.updateDisplayName(_displayNameController.text.trim());
+        await credential.user!
+            .updateDisplayName(_displayNameController.text.trim());
 
         // Create user document in Firestore
         await FirebaseFirestore.instance
@@ -236,7 +238,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               ? null
                               : () {
                                   setState(() {
-                                    _obscureConfirmPassword = !_obscureConfirmPassword;
+                                    _obscureConfirmPassword =
+                                        !_obscureConfirmPassword;
                                   });
                                 },
                         ),

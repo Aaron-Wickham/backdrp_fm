@@ -206,6 +206,7 @@ Future<void> _connectToFirebaseEmulators() async {
     AppLogger.info('   Emulator UI: http://localhost:4000');
   } catch (e) {
     AppLogger.warning('⚠️  Failed to connect to Firebase Emulators', error: e);
-    AppLogger.warning('   Make sure emulators are running: firebase emulators:start');
+    AppLogger.warning(
+        '   Make sure emulators are running: firebase emulators:start');
   }
 }

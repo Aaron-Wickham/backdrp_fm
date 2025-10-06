@@ -298,7 +298,6 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-
   void _showSettingsSheet(BuildContext context, AppUser user) {
     showModalBottomSheet(
       context: context,

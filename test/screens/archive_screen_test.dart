@@ -122,8 +122,7 @@ void main() {
       expect(find.text('LOADING ARCHIVE'), findsOneWidget);
     });
 
-    testWidgets('displays error view when state is VideoError',
-        (tester) async {
+    testWidgets('displays error view when state is VideoError', (tester) async {
       when(() => mockVideoBloc.state)
           .thenReturn(const VideoError('Failed to load videos'));
 
@@ -180,8 +179,7 @@ void main() {
     testWidgets('displays list of videos when loaded', (tester) async {
       final videos = [testVideo, testVideo2];
 
-      when(() => mockVideoBloc.state)
-          .thenReturn(VideoLoaded(videos: videos));
+      when(() => mockVideoBloc.state).thenReturn(VideoLoaded(videos: videos));
 
       await tester.pumpWidget(createArchiveScreen());
       await tester.pump();
@@ -331,8 +329,7 @@ void main() {
       await tester.tap(find.widgetWithText(ElevatedButton, 'APPLY'));
       await tester.pump();
 
-      verify(() => mockVideoBloc.add(any(that: isA<FilterVideos>())))
-          .called(1);
+      verify(() => mockVideoBloc.add(any(that: isA<FilterVideos>()))).called(1);
     });
 
     testWidgets('pull-to-refresh dispatches LoadVideos', (tester) async {

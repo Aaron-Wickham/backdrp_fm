@@ -127,7 +127,6 @@ class _NotificationSettingsScreenState
                 },
               ),
               const SizedBox(height: AppSpacing.sm),
-
               _buildSwitchItem(
                 title: 'Artist Updates',
                 subtitle: 'Updates from artists you like',
@@ -137,7 +136,6 @@ class _NotificationSettingsScreenState
                 },
               ),
               const SizedBox(height: AppSpacing.sm),
-
               _buildSwitchItem(
                 title: 'Weekly Digest',
                 subtitle: 'Weekly summary of top content',

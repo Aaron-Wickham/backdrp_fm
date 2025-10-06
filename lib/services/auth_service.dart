@@ -137,7 +137,8 @@ class AuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
-      AppLogger.error('Reset password error: ${e.code} - ${e.message}', error: e);
+      AppLogger.error('Reset password error: ${e.code} - ${e.message}',
+          error: e);
       rethrow;
     } catch (e) {
       AppLogger.error('Unexpected reset password error', error: e);
