@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
+import '../utils/app_logger.dart';
 
 /// Utility class for common BLoC patterns and transformers
 class BlocUtils {
@@ -52,10 +52,7 @@ class BlocUtils {
     StackTrace stackTrace,
     Function(String) emitError,
   ) async {
-    if (kDebugMode) {
-      print('BLoC Error: $error');
-      print('StackTrace: $stackTrace');
-    }
+    AppLogger.error('BLoC Error', error: error, stackTrace: stackTrace);
 
     String errorMessage = 'An unexpected error occurred';
 
@@ -256,9 +253,7 @@ extension BlocExtensions<Event, State> on Bloc<Event, State> {
     try {
       add(event);
     } catch (e) {
-      if (kDebugMode) {
-        print('Error adding event: $e');
-      }
+      AppLogger.error('Error adding event', error: e);
     }
   }
 
@@ -299,9 +294,7 @@ class RetryUtil {
           rethrow;
         }
 
-        if (kDebugMode) {
-          print('Retry attempt $attempt after error: $e');
-        }
+        AppLogger.warning('Retry attempt $attempt after error', error: e);
 
         await Future.delayed(delay);
         delay *= backoffFactor;
