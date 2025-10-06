@@ -34,6 +34,12 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
+      - name: Create placeholder env files
+        run: |
+          echo "ENVIRONMENT=development" > .env.development
+          echo "ENVIRONMENT=staging" > .env.staging
+          echo "ENVIRONMENT=production" > .env.production
+
       - name: Start Firebase Emulators
         run: |
           firebase emulators:start --only auth,firestore,storage &

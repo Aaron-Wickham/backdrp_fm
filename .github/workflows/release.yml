@@ -65,6 +65,12 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Create placeholder env files
+        run: |
+          echo "ENVIRONMENT=production" > .env.development
+          echo "ENVIRONMENT=production" > .env.staging
+          echo "ENVIRONMENT=production" > .env.production
+
       - name: Build iOS IPA
         run: |
           flutter build ios --release --no-codesign
@@ -105,6 +111,12 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Create placeholder env files
+        run: |
+          echo "ENVIRONMENT=production" > .env.development
+          echo "ENVIRONMENT=production" > .env.staging
+          echo "ENVIRONMENT=production" > .env.production
+
       - name: Build Android APK
         run: flutter build apk --release
 
@@ -141,6 +153,12 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+
+      - name: Create placeholder env files
+        run: |
+          echo "ENVIRONMENT=production" > .env.development
+          echo "ENVIRONMENT=production" > .env.staging
+          echo "ENVIRONMENT=production" > .env.production
 
       - name: Build macOS
         run: flutter build macos --release

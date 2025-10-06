@@ -50,6 +50,12 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Create placeholder env files
+        run: |
+          echo "ENVIRONMENT=development" > .env.development
+          echo "ENVIRONMENT=staging" > .env.staging
+          echo "ENVIRONMENT=production" > .env.production
+
       - name: Run unit tests
         run: flutter test --coverage --reporter=expanded
 
