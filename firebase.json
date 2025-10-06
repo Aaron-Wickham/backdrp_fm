@@ -1,1 +1,87 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"backdrp-fm-prod-4215e","appId":"1:864187672865:android:5aea51778aa320f9c1f660","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"backdrp-fm-prod-4215e","appId":"1:864187672865:ios:2cdfb900ad18bfbdc1f660","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"backdrop-fm","configurations":{"android":"1:639126146221:android:c649be8668d84500868a24","ios":"1:639126146221:ios:0505fdbdf6de0752868a24","web":"1:639126146221:web:f5cb0d1b5cfdd8b5868a24"}},"lib/firebase_options_dev.dart":{"projectId":"backdrp-fm-dev","configurations":{"android":"1:858745330379:android:affc1e47dcb1fea8ffd94e","ios":"1:858745330379:ios:76b2dc9419ddff08ffd94e","web":"1:858745330379:web:75ee185b8c370408ffd94e"}},"lib/firebase_options_staging.dart":{"projectId":"backdrp-fm-staging","configurations":{"android":"1:180438727971:android:fc1b9aa646298028fa6096","ios":"1:180438727971:ios:3e91f923f51e67fffa6096","web":"1:180438727971:web:00bbaba42cfd81c1fa6096"}},"lib/firebase_options_prod.dart":{"projectId":"backdrp-fm-prod-4215e","configurations":{"android":"1:864187672865:android:5aea51778aa320f9c1f660","ios":"1:864187672865:ios:2cdfb900ad18bfbdc1f660","web":"1:864187672865:web:df50f3c56f524b7ec1f660"}}}}},"functions":[{"source":"functions","codebase":"default","ignore":["node_modules",".git","firebase-debug.log","firebase-debug.*.log"]}],"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "backdrp-fm-prod-4215e",
+          "appId": "1:864187672865:android:5aea51778aa320f9c1f660",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "backdrp-fm-prod-4215e",
+          "appId": "1:864187672865:ios:2cdfb900ad18bfbdc1f660",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "backdrop-fm",
+          "configurations": {
+            "android": "1:639126146221:android:c649be8668d84500868a24",
+            "ios": "1:639126146221:ios:0505fdbdf6de0752868a24",
+            "web": "1:639126146221:web:f5cb0d1b5cfdd8b5868a24"
+          }
+        },
+        "lib/firebase_options_dev.dart": {
+          "projectId": "backdrp-fm-dev",
+          "configurations": {
+            "android": "1:858745330379:android:affc1e47dcb1fea8ffd94e",
+            "ios": "1:858745330379:ios:76b2dc9419ddff08ffd94e",
+            "web": "1:858745330379:web:75ee185b8c370408ffd94e"
+          }
+        },
+        "lib/firebase_options_staging.dart": {
+          "projectId": "backdrp-fm-staging",
+          "configurations": {
+            "android": "1:180438727971:android:fc1b9aa646298028fa6096",
+            "ios": "1:180438727971:ios:3e91f923f51e67fffa6096",
+            "web": "1:180438727971:web:00bbaba42cfd81c1fa6096"
+          }
+        },
+        "lib/firebase_options_prod.dart": {
+          "projectId": "backdrp-fm-prod-4215e",
+          "configurations": {
+            "android": "1:864187672865:android:5aea51778aa320f9c1f660",
+            "ios": "1:864187672865:ios:2cdfb900ad18bfbdc1f660",
+            "web": "1:864187672865:web:df50f3c56f524b7ec1f660"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    },
+    "singleProjectMode": true
+  }
+}

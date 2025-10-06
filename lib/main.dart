@@ -2,6 +2,9 @@ import 'package:backdrp_fm/bloc/navigation/navigation_event.dart';
 import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,6 +44,11 @@ Future<void> main() async {
 
   // Initialize Firebase
   await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
+
+  // Connect to Firebase Emulators in test mode
+  if (const bool.fromEnvironment('USE_FIREBASE_EMULATORS')) {
+    await _connectToFirebaseEmulators();
+  }
 
   // Initialize HydratedBloc storage
   HydratedBloc.storage = await HydratedStorage.build(
@@ -178,4 +186,31 @@ class MainScreen extends StatelessWidget {
   }
 }
 
+/// Connect to Firebase Emulators for integration testing
+Future<void> _connectToFirebaseEmulators() async {
+  const host = 'localhost';
 
+  try {
+    // Auth Emulator
+    await FirebaseAuth.instance.useAuthEmulator(host, 9099);
+
+    // Firestore Emulator
+    FirebaseFirestore.instance.useFirestoreEmulator(host, 8080);
+
+    // Storage Emulator
+    await FirebaseStorage.instance.useStorageEmulator(host, 9199);
+
+    if (kDebugMode) {
+      print('🔧 Connected to Firebase Emulators');
+      print('   Auth: $host:9099');
+      print('   Firestore: $host:8080');
+      print('   Storage: $host:9199');
+      print('   Emulator UI: http://localhost:4000');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('⚠️  Failed to connect to Firebase Emulators: $e');
+      print('   Make sure emulators are running: firebase emulators:start');
+    }
+  }
+}
