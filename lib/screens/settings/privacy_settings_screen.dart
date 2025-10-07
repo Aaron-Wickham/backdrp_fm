@@ -477,7 +477,8 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         padding: AppSpacing.paddingAll,
         decoration: BoxDecoration(
           color: AppColors.surfaceVariant,
-          border: Border.all(color: Colors.red.withOpacity(0.3), width: 1),
+          border:
+              Border.all(color: Colors.red.withValues(alpha: 0.3), width: 1),
         ),
         child: Row(
           children: [
@@ -511,7 +512,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
             Icon(
               Icons.arrow_forward_ios,
               size: 16,
-              color: Colors.red.withOpacity(0.5),
+              color: Colors.red.withValues(alpha: 0.5),
             ),
           ],
         ),

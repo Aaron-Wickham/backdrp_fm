@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.backdrp_fm"
+    namespace = "com.backdrpfm.app"
 
     // These come from the Flutter Gradle plugin (keeps in sync with your Flutter SDK)
     compileSdk = flutter.compileSdkVersion
@@ -28,8 +28,7 @@ android {
     }
 
     defaultConfig {
-        // You can change this later to your final app id (e.g., com.backdrpfm.app)
-        applicationId = "com.example.backdrp_fm"
+        applicationId = "com.backdrpfm.app"
 
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
