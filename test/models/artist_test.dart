@@ -45,7 +45,8 @@ void main() {
 
       expect(artist.bio, 'An amazing artist');
       expect(artist.profileImageUrl, 'https://example.com/profile.jpg');
-      expect(artist.socialLinks['instagram'], 'https://instagram.com/testartist');
+      expect(
+          artist.socialLinks['instagram'], 'https://instagram.com/testartist');
       expect(artist.genres, ['Electronic', 'House']);
       expect(artist.location, 'London, UK');
       expect(artist.totalSets, 10);

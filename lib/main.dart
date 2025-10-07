@@ -1,5 +1,5 @@
 import 'package:backdrp_fm/bloc/navigation/navigation_event.dart';
-import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +26,7 @@ import 'bloc/navigation/navigation_bloc.dart';
 import 'bloc/navigation/navigation_state.dart';
 import 'theme/app_theme.dart';
 import 'config/environment.dart';
+import 'utils/app_logger.dart';
 
 // TODO: Add global error handler with FlutterError.onError and PlatformDispatcher.instance.onError
 // TODO: Add crash reporting service (Firebase Crashlytics or Sentry)
@@ -38,9 +39,7 @@ Future<void> main() async {
   // Initialize environment from --dart-define flags or .env file
   await AppEnvironment.init();
 
-  if (kDebugMode) {
-    print('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
-  }
+  AppLogger.info('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
 
   // Initialize Firebase
   await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
@@ -200,17 +199,14 @@ Future<void> _connectToFirebaseEmulators() async {
     // Storage Emulator
     await FirebaseStorage.instance.useStorageEmulator(host, 9199);
 
-    if (kDebugMode) {
-      print('🔧 Connected to Firebase Emulators');
-      print('   Auth: $host:9099');
-      print('   Firestore: $host:8080');
-      print('   Storage: $host:9199');
-      print('   Emulator UI: http://localhost:4000');
-    }
+    AppLogger.info('🔧 Connected to Firebase Emulators');
+    AppLogger.info('   Auth: $host:9099');
+    AppLogger.info('   Firestore: $host:8080');
+    AppLogger.info('   Storage: $host:9199');
+    AppLogger.info('   Emulator UI: http://localhost:4000');
   } catch (e) {
-    if (kDebugMode) {
-      print('⚠️  Failed to connect to Firebase Emulators: $e');
-      print('   Make sure emulators are running: firebase emulators:start');
-    }
+    AppLogger.warning('⚠️  Failed to connect to Firebase Emulators', error: e);
+    AppLogger.warning(
+        '   Make sure emulators are running: firebase emulators:start');
   }
 }

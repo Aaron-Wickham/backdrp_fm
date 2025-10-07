@@ -42,7 +42,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   }
 
   void _applyFilters() {
-    final List<String>? genres = _selectedGenre != null ? [_selectedGenre!] : null;
+    final List<String>? genres =
+        _selectedGenre != null ? [_selectedGenre!] : null;
 
     context.read<VideoBloc>().add(
           FilterVideos(
@@ -196,7 +197,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => VideoDetailScreen(video: video),
+                                builder: (context) =>
+                                    VideoDetailScreen(video: video),
                               ),
                             );
                           },
@@ -350,106 +352,106 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'FILTERS',
-                    style: AppTypography.h5.copyWith(
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.lg),
-
-              // Genre Filter
-              Text(
-                'GENRE',
-                style: AppTypography.labelSmall.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
-                children: _buildGenreChips(setModalState),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-
-              // Artist Filter
-              Text(
-                'ARTIST',
-                style: AppTypography.labelSmall.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
-                children: _buildArtistChips(setModalState),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-
-              // Location Filter
-              Text(
-                'LOCATION',
-                style: AppTypography.labelSmall.copyWith(
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
-                children: _buildLocationChips(setModalState),
-              ),
-              const SizedBox(height: AppSpacing.xl),
-
-              // Action Buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        setModalState(() {
-                          _selectedGenre = null;
-                          _selectedArtist = null;
-                          _selectedArtistName = null;
-                          _selectedCity = null;
-                          _selectedCountry = null;
-                        });
-                      },
-                      child: Text(
-                        'CLEAR',
-                        style: AppTypography.button,
+                // Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'FILTERS',
+                      style: AppTypography.h5.copyWith(
+                        letterSpacing: 2.0,
                       ),
                     ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.lg),
+
+                // Genre Filter
+                Text(
+                  'GENRE',
+                  style: AppTypography.labelSmall.copyWith(
+                    color: AppColors.textSecondary,
                   ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {});
-                        _applyFilters();
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'APPLY',
-                        style: AppTypography.button,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.sm,
+                  children: _buildGenreChips(setModalState),
+                ),
+                const SizedBox(height: AppSpacing.lg),
+
+                // Artist Filter
+                Text(
+                  'ARTIST',
+                  style: AppTypography.labelSmall.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.sm,
+                  children: _buildArtistChips(setModalState),
+                ),
+                const SizedBox(height: AppSpacing.lg),
+
+                // Location Filter
+                Text(
+                  'LOCATION',
+                  style: AppTypography.labelSmall.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.sm,
+                  children: _buildLocationChips(setModalState),
+                ),
+                const SizedBox(height: AppSpacing.xl),
+
+                // Action Buttons
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          setModalState(() {
+                            _selectedGenre = null;
+                            _selectedArtist = null;
+                            _selectedArtistName = null;
+                            _selectedCity = null;
+                            _selectedCountry = null;
+                          });
+                        },
+                        child: Text(
+                          'CLEAR',
+                          style: AppTypography.button,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(width: AppSpacing.md),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {});
+                          _applyFilters();
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'APPLY',
+                          style: AppTypography.button,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );

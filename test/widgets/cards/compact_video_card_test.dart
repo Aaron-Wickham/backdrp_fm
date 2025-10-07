@@ -181,10 +181,12 @@ void main() {
       );
 
       final container = tester.widget<Container>(
-        find.descendant(
-          of: find.byType(CompactVideoCard),
-          matching: find.byType(Container),
-        ).first,
+        find
+            .descendant(
+              of: find.byType(CompactVideoCard),
+              matching: find.byType(Container),
+            )
+            .first,
       );
 
       expect(container.decoration, isNotNull);

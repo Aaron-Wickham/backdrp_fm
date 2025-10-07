@@ -318,7 +318,8 @@ void main() {
         });
 
         // Act
-        final stream = playlistService.getPlaylistsByPlatform(MusicPlatform.spotify);
+        final stream =
+            playlistService.getPlaylistsByPlatform(MusicPlatform.spotify);
         final playlists = await stream.first;
 
         // Assert

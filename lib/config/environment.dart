@@ -38,7 +38,8 @@ class AppEnvironment {
   /// Called from main.dart during app startup
   static Future<void> init() async {
     // First check --dart-define
-    const dartDefineEnv = String.fromEnvironment('ENVIRONMENT', defaultValue: '');
+    const dartDefineEnv =
+        String.fromEnvironment('ENVIRONMENT', defaultValue: '');
 
     if (dartDefineEnv.isNotEmpty) {
       _setEnvironmentFromString(dartDefineEnv);

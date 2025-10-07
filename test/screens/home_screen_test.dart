@@ -112,8 +112,7 @@ void main() {
       expect(find.text('LOADING VIDEOS'), findsOneWidget);
     });
 
-    testWidgets('displays error view when state is VideoError',
-        (tester) async {
+    testWidgets('displays error view when state is VideoError', (tester) async {
       when(() => mockVideoBloc.state)
           .thenReturn(const VideoError('Failed to load videos'));
 
@@ -150,7 +149,8 @@ void main() {
       await tester.pump();
 
       expect(find.text('NO VIDEOS'), findsOneWidget);
-      expect(find.text('No videos available at the moment'), findsOneWidget); // Not uppercased
+      expect(find.text('No videos available at the moment'),
+          findsOneWidget); // Not uppercased
       expect(find.text('REFRESH'), findsOneWidget);
       expect(find.byIcon(Icons.video_library_outlined), findsOneWidget);
     });
@@ -174,8 +174,7 @@ void main() {
     testWidgets('displays list of videos when loaded', (tester) async {
       final videos = [testVideo, testVideo2];
 
-      when(() => mockVideoBloc.state)
-          .thenReturn(VideoLoaded(videos: videos));
+      when(() => mockVideoBloc.state).thenReturn(VideoLoaded(videos: videos));
 
       await tester.pumpWidget(createHomeScreen());
       await tester.pump();
@@ -233,8 +232,7 @@ void main() {
 
     testWidgets('pull-to-refresh dispatches LoadVideos', (tester) async {
       final videos = [testVideo];
-      when(() => mockVideoBloc.state)
-          .thenReturn(VideoLoaded(videos: videos));
+      when(() => mockVideoBloc.state).thenReturn(VideoLoaded(videos: videos));
 
       await tester.pumpWidget(createHomeScreen());
 
@@ -256,7 +254,8 @@ void main() {
           id: 'video$index',
           youtubeUrl: 'https://youtube.com/watch?v=test$index',
           youtubeId: 'test$index',
-          thumbnailUrl: 'https://img.youtube.com/vi/test$index/maxresdefault.jpg',
+          thumbnailUrl:
+              'https://img.youtube.com/vi/test$index/maxresdefault.jpg',
           title: 'Test Video $index',
           artist: 'Test Artist',
           artistId: 'artist1',
@@ -277,8 +276,7 @@ void main() {
         ),
       );
 
-      when(() => mockVideoBloc.state)
-          .thenReturn(VideoLoaded(videos: videos));
+      when(() => mockVideoBloc.state).thenReturn(VideoLoaded(videos: videos));
 
       await tester.pumpWidget(createHomeScreen());
 

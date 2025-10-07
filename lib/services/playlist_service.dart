@@ -45,7 +45,10 @@ class PlaylistService {
   // Get single playlist by ID
   Future<Playlist?> getPlaylist(String id) async {
     try {
-      final doc = await _firestore.collection(AppEnvironment.getCollectionName('playlists')).doc(id).get();
+      final doc = await _firestore
+          .collection(AppEnvironment.getCollectionName('playlists'))
+          .doc(id)
+          .get();
       if (doc.exists) {
         return Playlist.fromFirestore(doc);
       }
@@ -85,7 +88,9 @@ class PlaylistService {
         'sortOrder': sortOrder,
       };
 
-      final docRef = await _firestore.collection(AppEnvironment.getCollectionName('playlists')).add(playlistData);
+      final docRef = await _firestore
+          .collection(AppEnvironment.getCollectionName('playlists'))
+          .add(playlistData);
       return docRef.id;
     } catch (e) {
       return null;
@@ -101,7 +106,10 @@ class PlaylistService {
         updates['platform'] = (updates['platform'] as MusicPlatform).name;
       }
 
-      await _firestore.collection(AppEnvironment.getCollectionName('playlists')).doc(id).update(updates);
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('playlists'))
+          .doc(id)
+          .update(updates);
       return true;
     } catch (e) {
       return false;
@@ -111,7 +119,10 @@ class PlaylistService {
   // Delete playlist
   Future<bool> deletePlaylist(String id) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('playlists')).doc(id).delete();
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('playlists'))
+          .doc(id)
+          .delete();
       return true;
     } catch (e) {
       return false;
@@ -132,8 +143,10 @@ class PlaylistService {
   // Search playlists by title
   Stream<List<Playlist>> searchPlaylists(String query) {
     final queryLower = query.toLowerCase();
-    return _firestore.collection(AppEnvironment.getCollectionName('playlists')).snapshots().map((snapshot) =>
-        snapshot.docs
+    return _firestore
+        .collection(AppEnvironment.getCollectionName('playlists'))
+        .snapshots()
+        .map((snapshot) => snapshot.docs
             .map((doc) => Playlist.fromFirestore(doc))
             .where((playlist) =>
                 playlist.title.toLowerCase().contains(queryLower) ||

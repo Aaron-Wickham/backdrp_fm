@@ -27,7 +27,8 @@ void main() {
     );
 
     // Mock the authStateChanges stream to return a never-ending stream
-    when(mockAuthService.authStateChanges).thenAnswer((_) => Stream.value(null));
+    when(mockAuthService.authStateChanges)
+        .thenAnswer((_) => Stream.value(null));
 
     authBloc = AuthBloc(authService: mockAuthService);
   });
@@ -39,7 +40,8 @@ void main() {
   group('AuthBloc', () {
     test('initial state is AuthInitial or AuthUnauthenticated', () {
       // The state can be AuthInitial or AuthUnauthenticated depending on the stream
-      expect(authBloc.state, anyOf(const AuthInitial(), const AuthUnauthenticated()));
+      expect(authBloc.state,
+          anyOf(const AuthInitial(), const AuthUnauthenticated()));
     });
 
     blocTest<AuthBloc, AuthState>(
@@ -225,7 +227,8 @@ void main() {
     blocTest<AuthBloc, AuthState>(
       'emits [AuthUnauthenticated] when AuthLoggedOut is added',
       build: () {
-        when(mockAuthService.authStateChanges).thenAnswer((_) => Stream.value(null));
+        when(mockAuthService.authStateChanges)
+            .thenAnswer((_) => Stream.value(null));
         return AuthBloc(authService: mockAuthService);
       },
       act: (bloc) => bloc.add(const AuthLoggedOut()),

@@ -12,8 +12,8 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   static const int _pageSize = 20;
 
   VideoBloc({required VideoService videoService})
-    : _videoService = videoService,
-      super(const VideoInitial()) {
+      : _videoService = videoService,
+        super(const VideoInitial()) {
     // Register event handlers
     on<LoadVideos>(_onLoadVideos);
     on<LoadFeaturedVideos>(_onLoadFeaturedVideos);
@@ -214,7 +214,6 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
       emit(currentState.copyWith(isLoadingMore: false, hasReachedMax: true));
     }
   }
-
 
   @override
   Future<void> close() {

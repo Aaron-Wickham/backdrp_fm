@@ -12,8 +12,8 @@ class UploadBloc extends Bloc<UploadEvent, UploadState> {
   String? _currentThumbnailUrl;
 
   UploadBloc({required VideoService videoService})
-    : _videoService = videoService,
-      super(const UploadInitial()) {
+      : _videoService = videoService,
+        super(const UploadInitial()) {
     // Register event handlers
     on<ExtractYouTubeId>(_onExtractYouTubeId);
     on<ValidateForm>(_onValidateForm);

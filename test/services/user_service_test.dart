@@ -30,7 +30,8 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
       });
 
@@ -50,8 +51,10 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
-        expect(doc.data()?['profileImageUrl'], 'https://example.com/profile.jpg');
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
+        expect(
+            doc.data()?['profileImageUrl'], 'https://example.com/profile.jpg');
       });
 
       test('updates both fields when both provided', () async {
@@ -71,7 +74,8 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
         expect(doc.data()?['profileImageUrl'], 'new.jpg');
       });
@@ -322,7 +326,8 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], true);
       });
 
@@ -339,7 +344,8 @@ void main() {
         await userService.subscribeToEmail(userId, true);
 
         // Assert
-        final mailingDoc = await fakeFirestore.collection('mailingList').doc(userId).get();
+        final mailingDoc =
+            await fakeFirestore.collection('mailingList').doc(userId).get();
         expect(mailingDoc.exists, isTrue);
         expect(mailingDoc.data()?['email'], 'test@example.com');
         expect(mailingDoc.data()?['active'], true);
@@ -362,7 +368,8 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], false);
       });
 
@@ -382,7 +389,8 @@ void main() {
         await userService.subscribeToEmail(userId, false);
 
         // Assert
-        final mailingDoc = await fakeFirestore.collection('mailingList').doc(userId).get();
+        final mailingDoc =
+            await fakeFirestore.collection('mailingList').doc(userId).get();
         expect(mailingDoc.data()?['active'], false);
       });
     });
@@ -400,7 +408,8 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['pushSubscribed'], true);
       });
     });
@@ -417,7 +426,8 @@ void main() {
         await userService.updateLastActive(userId);
 
         // Assert
-        final doc = await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc =
+            await fakeFirestore.collection('dev_users').doc(userId).get();
         expect(doc.data()?['lastActive'], isNotNull);
       });
 

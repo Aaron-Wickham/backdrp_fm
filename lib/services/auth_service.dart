@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/app_user.dart';
+import '../utils/app_logger.dart';
 
 class AuthService {
   final FirebaseAuth _auth;
@@ -30,7 +31,7 @@ class AuthService {
       }
       return null;
     } catch (e) {
-      print('Error getting current app user: $e');
+      AppLogger.error('Error getting current app user', error: e);
       return null;
     }
   }
@@ -78,10 +79,10 @@ class AuthService {
 
       return credential;
     } on FirebaseAuthException catch (e) {
-      print('Sign up error: ${e.code} - ${e.message}');
+      AppLogger.error('Sign up error: ${e.code} - ${e.message}', error: e);
       rethrow;
     } catch (e) {
-      print('Unexpected sign up error: $e');
+      AppLogger.error('Unexpected sign up error', error: e);
       rethrow;
     }
   }
@@ -113,10 +114,10 @@ class AuthService {
 
       return credential;
     } on FirebaseAuthException catch (e) {
-      print('Sign in error: ${e.code} - ${e.message}');
+      AppLogger.error('Sign in error: ${e.code} - ${e.message}', error: e);
       rethrow;
     } catch (e) {
-      print('Unexpected sign in error: $e');
+      AppLogger.error('Unexpected sign in error', error: e);
       rethrow;
     }
   }
@@ -126,7 +127,7 @@ class AuthService {
     try {
       await _auth.signOut();
     } catch (e) {
-      print('Sign out error: $e');
+      AppLogger.error('Sign out error', error: e);
       rethrow;
     }
   }
@@ -136,10 +137,11 @@ class AuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
-      print('Reset password error: ${e.code} - ${e.message}');
+      AppLogger.error('Reset password error: ${e.code} - ${e.message}',
+          error: e);
       rethrow;
     } catch (e) {
-      print('Unexpected reset password error: $e');
+      AppLogger.error('Unexpected reset password error', error: e);
       rethrow;
     }
   }

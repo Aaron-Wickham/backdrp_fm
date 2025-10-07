@@ -38,7 +38,8 @@ void main() {
         const ExtractingVideoInfo(),
         const VideoInfoExtracted(
           youtubeId: 'dQw4w9WgXcQ',
-          thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          thumbnailUrl:
+              'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
         ),
       ],
     );
@@ -70,7 +71,8 @@ void main() {
         const FormValidating(),
         const FormValid(
           youtubeId: 'dQw4w9WgXcQ',
-          thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          thumbnailUrl:
+              'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
         ),
       ],
     );

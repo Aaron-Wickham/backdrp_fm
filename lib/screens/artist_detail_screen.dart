@@ -94,7 +94,8 @@ class _ArtistDetailScreenState extends State<ArtistDetailScreen> {
                         height: 80,
                         decoration: BoxDecoration(
                           color: AppColors.gray800,
-                          border: Border.all(color: AppColors.borderLight, width: 2),
+                          border: Border.all(
+                              color: AppColors.borderLight, width: 2),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: widget.artist.profileImageUrl.isNotEmpty
@@ -272,7 +273,8 @@ class _ArtistDetailScreenState extends State<ArtistDetailScreen> {
                         Wrap(
                           spacing: AppSpacing.sm,
                           runSpacing: AppSpacing.sm,
-                          children: widget.artist.socialLinks.entries.map((entry) {
+                          children:
+                              widget.artist.socialLinks.entries.map((entry) {
                             return _buildSocialButton(entry.key, entry.value);
                           }).toList(),
                         ),
@@ -329,7 +331,8 @@ class _ArtistDetailScreenState extends State<ArtistDetailScreen> {
                           padding: const EdgeInsets.all(AppSpacing.xl),
                           child: EmptyState(
                             title: 'No Videos Yet',
-                            message: 'This artist hasn\'t posted any videos yet',
+                            message:
+                                'This artist hasn\'t posted any videos yet',
                             icon: Icons.video_library_outlined,
                           ),
                         );

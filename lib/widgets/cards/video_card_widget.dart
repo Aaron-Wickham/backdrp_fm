@@ -115,7 +115,8 @@ class VideoCardWidget extends StatelessWidget {
                       ),
                       const SizedBox(width: AppSpacing.xs),
                       Text(
-                        '${video.location.city}, ${video.location.country}'.toUpperCase(),
+                        '${video.location.city}, ${video.location.country}'
+                            .toUpperCase(),
                         style: AppTypography.labelSmall.copyWith(
                           color: AppColors.textTertiary,
                         ),

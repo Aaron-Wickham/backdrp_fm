@@ -49,21 +49,30 @@ class AppTheme {
 
       // Text Theme
       textTheme: TextTheme(
-        displayLarge: AppTypography.display1.copyWith(color: AppColors.textPrimary),
-        displayMedium: AppTypography.display2.copyWith(color: AppColors.textPrimary),
-        displaySmall: AppTypography.display3.copyWith(color: AppColors.textPrimary),
+        displayLarge:
+            AppTypography.display1.copyWith(color: AppColors.textPrimary),
+        displayMedium:
+            AppTypography.display2.copyWith(color: AppColors.textPrimary),
+        displaySmall:
+            AppTypography.display3.copyWith(color: AppColors.textPrimary),
         headlineLarge: AppTypography.h1.copyWith(color: AppColors.textPrimary),
         headlineMedium: AppTypography.h2.copyWith(color: AppColors.textPrimary),
         headlineSmall: AppTypography.h3.copyWith(color: AppColors.textPrimary),
         titleLarge: AppTypography.h4.copyWith(color: AppColors.textPrimary),
         titleMedium: AppTypography.h5.copyWith(color: AppColors.textPrimary),
         titleSmall: AppTypography.h6.copyWith(color: AppColors.textPrimary),
-        bodyLarge: AppTypography.bodyLarge.copyWith(color: AppColors.textPrimary),
-        bodyMedium: AppTypography.bodyMedium.copyWith(color: AppColors.textPrimary),
-        bodySmall: AppTypography.bodySmall.copyWith(color: AppColors.textSecondary),
-        labelLarge: AppTypography.labelLarge.copyWith(color: AppColors.textPrimary),
-        labelMedium: AppTypography.labelMedium.copyWith(color: AppColors.textPrimary),
-        labelSmall: AppTypography.labelSmall.copyWith(color: AppColors.textSecondary),
+        bodyLarge:
+            AppTypography.bodyLarge.copyWith(color: AppColors.textPrimary),
+        bodyMedium:
+            AppTypography.bodyMedium.copyWith(color: AppColors.textPrimary),
+        bodySmall:
+            AppTypography.bodySmall.copyWith(color: AppColors.textSecondary),
+        labelLarge:
+            AppTypography.labelLarge.copyWith(color: AppColors.textPrimary),
+        labelMedium:
+            AppTypography.labelMedium.copyWith(color: AppColors.textPrimary),
+        labelSmall:
+            AppTypography.labelSmall.copyWith(color: AppColors.textSecondary),
       ),
 
       // Card Theme
@@ -325,5 +334,4 @@ class AppTheme {
       ),
     );
   }
-
 }

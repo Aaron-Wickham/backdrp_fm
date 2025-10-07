@@ -358,7 +358,8 @@ void main() {
         pushSubscribed: testUser.pushSubscribed,
         preferences: testUser.preferences,
       );
-      when(() => mockAuthBloc.state).thenReturn(AuthAuthenticated(userWithLike));
+      when(() => mockAuthBloc.state)
+          .thenReturn(AuthAuthenticated(userWithLike));
       when(() => mockVideoBloc.state).thenReturn(const VideoInitial());
 
       await tester.pumpWidget(createTestableVideoDetailScreen());

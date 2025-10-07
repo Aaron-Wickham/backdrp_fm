@@ -33,11 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Dispatch login event to AuthBloc
     context.read<AuthBloc>().add(
-      AuthLoginRequested(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      ),
-    );
+          AuthLoginRequested(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+          ),
+        );
   }
 
   @override

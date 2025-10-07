@@ -10,8 +10,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   StreamSubscription<User?>? _authStateSubscription;
 
   AuthBloc({required AuthService authService})
-    : _authService = authService,
-      super(const AuthInitial()) {
+      : _authService = authService,
+        super(const AuthInitial()) {
     // Register event handlers
     on<AuthStarted>(_onAuthStarted);
     on<AuthLoggedIn>(_onAuthLoggedIn);

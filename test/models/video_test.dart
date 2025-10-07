@@ -111,7 +111,8 @@ void main() {
         id: 'video1',
         youtubeUrl: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
         youtubeId: 'dQw4w9WgXcQ',
-        thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+        thumbnailUrl:
+            'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
         title: 'Test Video',
         artist: 'Test Artist',
         artistId: 'artist1',
@@ -137,7 +138,8 @@ void main() {
       await firestore.collection('videos').doc('video1').set({
         'youtubeUrl': 'https://youtube.com/watch?v=dQw4w9WgXcQ',
         'youtubeId': 'dQw4w9WgXcQ',
-        'thumbnailUrl': 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+        'thumbnailUrl':
+            'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
         'title': 'Test Video',
         'artist': 'Test Artist',
         'artistId': 'artist1',
@@ -180,7 +182,8 @@ void main() {
         id: 'video1',
         youtubeUrl: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
         youtubeId: 'dQw4w9WgXcQ',
-        thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+        thumbnailUrl:
+            'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
         title: 'Test Video',
         artist: 'Test Artist',
         artistId: 'artist1',
@@ -200,7 +203,8 @@ void main() {
     });
 
     test('extractYouTubeId extracts from standard URL', () {
-      final id = Video.extractYouTubeId('https://youtube.com/watch?v=dQw4w9WgXcQ');
+      final id =
+          Video.extractYouTubeId('https://youtube.com/watch?v=dQw4w9WgXcQ');
       expect(id, 'dQw4w9WgXcQ');
     });
 
@@ -210,7 +214,8 @@ void main() {
     });
 
     test('extractYouTubeId extracts from embed URL', () {
-      final id = Video.extractYouTubeId('https://youtube.com/embed/dQw4w9WgXcQ');
+      final id =
+          Video.extractYouTubeId('https://youtube.com/embed/dQw4w9WgXcQ');
       expect(id, 'dQw4w9WgXcQ');
     });
 
@@ -221,7 +226,8 @@ void main() {
 
     test('getYouTubeThumbnail returns correct URL', () {
       final thumbnail = Video.getYouTubeThumbnail('dQw4w9WgXcQ');
-      expect(thumbnail, 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');
+      expect(thumbnail,
+          'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg');
     });
   });
 }

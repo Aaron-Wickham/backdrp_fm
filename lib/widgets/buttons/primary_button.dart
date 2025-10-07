@@ -30,7 +30,8 @@ class PrimaryButton extends StatelessWidget {
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: isInverted ? AppColors.primary : AppColors.secondary,
-          foregroundColor: isInverted ? AppColors.textPrimary : AppColors.textInverse,
+          foregroundColor:
+              isInverted ? AppColors.textPrimary : AppColors.textInverse,
           disabledBackgroundColor: AppColors.disabled,
           disabledForegroundColor: AppColors.disabledText,
           elevation: AppElevation.button,

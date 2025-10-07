@@ -1,14 +1,10 @@
 plugins {
-    // Versions here are examples; use ones compatible with your setup/Flutter channel.
-    id("com.android.application") version "8.5.0" apply false
-    id("com.android.library") version "8.5.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.24" apply false
-
-    // Google Services plugin (needed for Firebase on Android)
-    id("com.google.gms.google-services") version "4.4.2" apply false
-
-    // Flutter plugin loader (do not apply here; Flutter applies it in the app module)
-    id("dev.flutter.flutter-plugin-loader") version "1.0.0" apply false
+    // Let Flutter manage all Android plugin versions automatically
+    id("com.android.application") apply false
+    id("com.android.library") apply false
+    id("org.jetbrains.kotlin.android") apply false
+    id("com.google.gms.google-services") apply false
+    id("dev.flutter.flutter-plugin-loader") apply false
 }
 
 allprojects {

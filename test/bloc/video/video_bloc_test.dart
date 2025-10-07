@@ -153,7 +153,8 @@ void main() {
             .thenAnswer((_) async => true);
         return VideoBloc(videoService: mockVideoService);
       },
-      act: (bloc) => bloc.add(const LikeVideo(videoId: 'video1', userId: 'user1')),
+      act: (bloc) =>
+          bloc.add(const LikeVideo(videoId: 'video1', userId: 'user1')),
       expect: () => [],
     );
 
@@ -164,7 +165,8 @@ void main() {
             .thenAnswer((_) async => false);
         return VideoBloc(videoService: mockVideoService);
       },
-      act: (bloc) => bloc.add(const LikeVideo(videoId: 'video1', userId: 'user1')),
+      act: (bloc) =>
+          bloc.add(const LikeVideo(videoId: 'video1', userId: 'user1')),
       expect: () => [
         const VideoError('Failed to like video'),
       ],

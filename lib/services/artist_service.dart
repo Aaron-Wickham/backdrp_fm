@@ -22,7 +22,10 @@ class ArtistService {
   // Get single artist by ID
   Future<Artist?> getArtist(String id) async {
     try {
-      final doc = await _firestore.collection(AppEnvironment.getCollectionName('artists')).doc(id).get();
+      final doc = await _firestore
+          .collection(AppEnvironment.getCollectionName('artists'))
+          .doc(id)
+          .get();
       if (doc.exists) {
         return Artist.fromFirestore(doc);
       }
@@ -69,7 +72,9 @@ class ArtistService {
         'active': active,
       };
 
-      final docRef = await _firestore.collection(AppEnvironment.getCollectionName('artists')).add(artistData);
+      final docRef = await _firestore
+          .collection(AppEnvironment.getCollectionName('artists'))
+          .add(artistData);
       return docRef.id;
     } catch (e) {
       return null;
@@ -79,7 +84,10 @@ class ArtistService {
   // Update artist
   Future<bool> updateArtist(String id, Map<String, dynamic> updates) async {
     try {
-      await _firestore.collection(AppEnvironment.getCollectionName('artists')).doc(id).update(updates);
+      await _firestore
+          .collection(AppEnvironment.getCollectionName('artists'))
+          .doc(id)
+          .update(updates);
       return true;
     } catch (e) {
       return false;

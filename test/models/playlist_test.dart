@@ -85,7 +85,8 @@ void main() {
         'sortOrder': 5,
       });
 
-      final doc = await firestore.collection('playlists').doc('playlist1').get();
+      final doc =
+          await firestore.collection('playlists').doc('playlist1').get();
       final playlist = Playlist.fromFirestore(doc);
 
       expect(playlist.id, 'playlist1');
@@ -104,7 +105,8 @@ void main() {
         'platformUrl': 'https://music.apple.com/playlist/123',
       });
 
-      final doc = await firestore.collection('playlists').doc('playlist1').get();
+      final doc =
+          await firestore.collection('playlists').doc('playlist1').get();
       final playlist = Playlist.fromFirestore(doc);
 
       expect(playlist.platform, MusicPlatform.apple);

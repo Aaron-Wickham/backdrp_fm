@@ -189,7 +189,8 @@ void main() {
         ),
       );
 
-      final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+      final textField =
+          tester.widget<TextFormField>(find.byType(TextFormField));
       expect(textField.enabled, isFalse);
     });
 

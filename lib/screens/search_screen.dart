@@ -23,7 +23,8 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderStateMixin {
+class _SearchScreenState extends State<SearchScreen>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   late TabController _tabController;
   bool _isSearching = false;
@@ -248,74 +249,74 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
           borderRadius: AppBorderRadius.radiusCard,
         ),
         child: Row(
-        children: [
-          // Artist Image Placeholder
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: AppColors.gray800,
-              border: Border.all(color: AppColors.borderLight, width: 1),
-              borderRadius: BorderRadius.circular(4),
+          children: [
+            // Artist Image Placeholder
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: AppColors.gray800,
+                border: Border.all(color: AppColors.borderLight, width: 1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: const Icon(
+                Icons.person,
+                size: 32,
+                color: AppColors.gray500,
+              ),
             ),
-            child: const Icon(
-              Icons.person,
-              size: 32,
-              color: AppColors.gray500,
-            ),
-          ),
-          const SizedBox(width: AppSpacing.md),
+            const SizedBox(width: AppSpacing.md),
 
-          // Artist Info
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  artist.name.toUpperCase(),
-                  style: AppTypography.labelLarge.copyWith(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                if (artist.genres.isNotEmpty)
+            // Artist Info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    artist.genres.join(', ').toUpperCase(),
-                    style: AppTypography.labelSmall.copyWith(
-                      color: AppColors.textSecondary,
+                    artist.name.toUpperCase(),
+                    style: AppTypography.labelLarge.copyWith(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                const SizedBox(height: AppSpacing.xs),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.video_library,
-                      size: 12,
-                      color: AppColors.textTertiary,
-                    ),
-                    const SizedBox(width: 4),
+                  const SizedBox(height: AppSpacing.xs),
+                  if (artist.genres.isNotEmpty)
                     Text(
-                      '${artist.totalSets} VIDEOS',
+                      artist.genres.join(', ').toUpperCase(),
                       style: AppTypography.labelSmall.copyWith(
-                        color: AppColors.textTertiary,
-                        fontSize: 10,
+                        color: AppColors.textSecondary,
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  const SizedBox(height: AppSpacing.xs),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.video_library,
+                        size: 12,
+                        color: AppColors.textTertiary,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${artist.totalSets} VIDEOS',
+                        style: AppTypography.labelSmall.copyWith(
+                          color: AppColors.textTertiary,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          // Arrow
-          const Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-            color: AppColors.textTertiary,
-          ),
-        ],
-      ),
+            // Arrow
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: AppColors.textTertiary,
+            ),
+          ],
+        ),
       ),
     );
   }

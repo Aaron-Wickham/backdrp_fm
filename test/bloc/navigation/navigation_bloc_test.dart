@@ -142,7 +142,8 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'handles deep link to video',
       build: () => NavigationBloc(),
-      act: (bloc) => bloc.add(const HandleDeepLink('https://app.com/video/video123')),
+      act: (bloc) =>
+          bloc.add(const HandleDeepLink('https://app.com/video/video123')),
       expect: () => [
         const NavigationDetail(
           type: NavigationType.video,
@@ -155,7 +156,8 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'handles deep link to artist',
       build: () => NavigationBloc(),
-      act: (bloc) => bloc.add(const HandleDeepLink('https://app.com/artist/artist123')),
+      act: (bloc) =>
+          bloc.add(const HandleDeepLink('https://app.com/artist/artist123')),
       expect: () => [
         const NavigationDetail(
           type: NavigationType.artist,
@@ -168,7 +170,8 @@ void main() {
     blocTest<NavigationBloc, NavigationState>(
       'handles deep link to playlist',
       build: () => NavigationBloc(),
-      act: (bloc) => bloc.add(const HandleDeepLink('https://app.com/playlist/playlist123')),
+      act: (bloc) => bloc
+          .add(const HandleDeepLink('https://app.com/playlist/playlist123')),
       expect: () => [
         const NavigationDetail(
           type: NavigationType.playlist,

@@ -35,10 +35,9 @@ class MockUserService extends _i1.Mock implements _i2.UserService {
   @override
   _i3.Stream<_i4.AppUser?> getUserProfile(String? userId) =>
       (super.noSuchMethod(
-            Invocation.method(#getUserProfile, [userId]),
-            returnValue: _i3.Stream<_i4.AppUser?>.empty(),
-          )
-          as _i3.Stream<_i4.AppUser?>);
+        Invocation.method(#getUserProfile, [userId]),
+        returnValue: _i3.Stream<_i4.AppUser?>.empty(),
+      ) as _i3.Stream<_i4.AppUser?>);
 
   @override
   _i3.Future<bool> updateUserProfile(
@@ -47,14 +46,13 @@ class MockUserService extends _i1.Mock implements _i2.UserService {
     String? profileImageUrl,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #updateUserProfile,
-              [userId],
-              {#displayName: displayName, #profileImageUrl: profileImageUrl},
-            ),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(
+          #updateUserProfile,
+          [userId],
+          {#displayName: displayName, #profileImageUrl: profileImageUrl},
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> updateNotificationPreferences(
@@ -64,73 +62,63 @@ class MockUserService extends _i1.Mock implements _i2.UserService {
     bool? weeklyDigest,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #updateNotificationPreferences,
-              [userId],
-              {
-                #newSets: newSets,
-                #artistUpdates: artistUpdates,
-                #weeklyDigest: weeklyDigest,
-              },
-            ),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(
+          #updateNotificationPreferences,
+          [userId],
+          {
+            #newSets: newSets,
+            #artistUpdates: artistUpdates,
+            #weeklyDigest: weeklyDigest,
+          },
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> updateFavoriteGenres(String? userId, List<String>? genres) =>
       (super.noSuchMethod(
-            Invocation.method(#updateFavoriteGenres, [userId, genres]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#updateFavoriteGenres, [userId, genres]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Stream<List<_i5.Video>> getUserLikedVideos(String? userId) =>
       (super.noSuchMethod(
-            Invocation.method(#getUserLikedVideos, [userId]),
-            returnValue: _i3.Stream<List<_i5.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i5.Video>>);
+        Invocation.method(#getUserLikedVideos, [userId]),
+        returnValue: _i3.Stream<List<_i5.Video>>.empty(),
+      ) as _i3.Stream<List<_i5.Video>>);
 
   @override
   _i3.Stream<List<_i5.Video>> getUserSavedVideos(String? userId) =>
       (super.noSuchMethod(
-            Invocation.method(#getUserSavedVideos, [userId]),
-            returnValue: _i3.Stream<List<_i5.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i5.Video>>);
+        Invocation.method(#getUserSavedVideos, [userId]),
+        returnValue: _i3.Stream<List<_i5.Video>>.empty(),
+      ) as _i3.Stream<List<_i5.Video>>);
 
   @override
   _i3.Future<bool> subscribeToEmail(String? userId, bool? subscribe) =>
       (super.noSuchMethod(
-            Invocation.method(#subscribeToEmail, [userId, subscribe]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#subscribeToEmail, [userId, subscribe]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> subscribeToPush(String? userId, bool? subscribe) =>
       (super.noSuchMethod(
-            Invocation.method(#subscribeToPush, [userId, subscribe]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#subscribeToPush, [userId, subscribe]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i3.Future<void> updateLastActive(String? userId) =>
-      (super.noSuchMethod(
-            Invocation.method(#updateLastActive, [userId]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> updateLastActive(String? userId) => (super.noSuchMethod(
+        Invocation.method(#updateLastActive, [userId]),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i3.Future<_i4.AppUser?> getUser(String? userId) =>
-      (super.noSuchMethod(
-            Invocation.method(#getUser, [userId]),
-            returnValue: _i3.Future<_i4.AppUser?>.value(),
-          )
-          as _i3.Future<_i4.AppUser?>);
+  _i3.Future<_i4.AppUser?> getUser(String? userId) => (super.noSuchMethod(
+        Invocation.method(#getUser, [userId]),
+        returnValue: _i3.Future<_i4.AppUser?>.value(),
+      ) as _i3.Future<_i4.AppUser?>);
 }

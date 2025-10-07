@@ -366,8 +366,8 @@ void main() {
             .thenAnswer((_) => Stream.value([]));
         when(mockUserService.getUserSavedVideos('user1'))
             .thenAnswer((_) => Stream.value([]));
-        when(mockUserService.updateFavoriteGenres('user1', ['Electronic', 'House']))
-            .thenAnswer((_) async => true);
+        when(mockUserService.updateFavoriteGenres(
+            'user1', ['Electronic', 'House'])).thenAnswer((_) async => true);
         return ProfileBloc(userService: mockUserService);
       },
       act: (bloc) async {

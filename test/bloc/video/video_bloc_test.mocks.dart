@@ -32,28 +32,24 @@ class MockVideoService extends _i1.Mock implements _i2.VideoService {
   }
 
   @override
-  _i3.Stream<List<_i4.Video>> getPublishedVideos() =>
-      (super.noSuchMethod(
-            Invocation.method(#getPublishedVideos, []),
-            returnValue: _i3.Stream<List<_i4.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i4.Video>>);
+  _i3.Stream<List<_i4.Video>> getPublishedVideos() => (super.noSuchMethod(
+        Invocation.method(#getPublishedVideos, []),
+        returnValue: _i3.Stream<List<_i4.Video>>.empty(),
+      ) as _i3.Stream<List<_i4.Video>>);
 
   @override
   _i3.Stream<List<_i4.Video>> getFeaturedVideos({int? limit = 10}) =>
       (super.noSuchMethod(
-            Invocation.method(#getFeaturedVideos, [], {#limit: limit}),
-            returnValue: _i3.Stream<List<_i4.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i4.Video>>);
+        Invocation.method(#getFeaturedVideos, [], {#limit: limit}),
+        returnValue: _i3.Stream<List<_i4.Video>>.empty(),
+      ) as _i3.Stream<List<_i4.Video>>);
 
   @override
   _i3.Stream<List<_i4.Video>> getVideosByArtist(String? artistId) =>
       (super.noSuchMethod(
-            Invocation.method(#getVideosByArtist, [artistId]),
-            returnValue: _i3.Stream<List<_i4.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i4.Video>>);
+        Invocation.method(#getVideosByArtist, [artistId]),
+        returnValue: _i3.Stream<List<_i4.Video>>.empty(),
+      ) as _i3.Stream<List<_i4.Video>>);
 
   @override
   _i3.Stream<List<_i4.Video>> getFilteredVideos({
@@ -65,25 +61,22 @@ class MockVideoService extends _i1.Mock implements _i2.VideoService {
     String? country,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#getFilteredVideos, [], {
-              #genre: genre,
-              #artistId: artistId,
-              #fromDate: fromDate,
-              #toDate: toDate,
-              #city: city,
-              #country: country,
-            }),
-            returnValue: _i3.Stream<List<_i4.Video>>.empty(),
-          )
-          as _i3.Stream<List<_i4.Video>>);
+        Invocation.method(#getFilteredVideos, [], {
+          #genre: genre,
+          #artistId: artistId,
+          #fromDate: fromDate,
+          #toDate: toDate,
+          #city: city,
+          #country: country,
+        }),
+        returnValue: _i3.Stream<List<_i4.Video>>.empty(),
+      ) as _i3.Stream<List<_i4.Video>>);
 
   @override
-  _i3.Future<_i4.Video?> getVideo(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getVideo, [id]),
-            returnValue: _i3.Future<_i4.Video?>.value(),
-          )
-          as _i3.Future<_i4.Video?>);
+  _i3.Future<_i4.Video?> getVideo(String? id) => (super.noSuchMethod(
+        Invocation.method(#getVideo, [id]),
+        returnValue: _i3.Future<_i4.Video?>.value(),
+      ) as _i3.Future<_i4.Video?>);
 
   @override
   _i3.Future<String?> addVideo({
@@ -109,70 +102,63 @@ class MockVideoService extends _i1.Mock implements _i2.VideoService {
     String? appleMusicPlaylistId,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#addVideo, [], {
-              #youtubeUrl: youtubeUrl,
-              #title: title,
-              #artist: artist,
-              #artistId: artistId,
-              #description: description,
-              #genres: genres,
-              #venue: venue,
-              #city: city,
-              #country: country,
-              #duration: duration,
-              #recordedDate: recordedDate,
-              #status: status,
-              #featured: featured,
-              #sortOrder: sortOrder,
-              #tags: tags,
-              #latitude: latitude,
-              #longitude: longitude,
-              #soundcloudUrl: soundcloudUrl,
-              #spotifyPlaylistId: spotifyPlaylistId,
-              #appleMusicPlaylistId: appleMusicPlaylistId,
-            }),
-            returnValue: _i3.Future<String?>.value(),
-          )
-          as _i3.Future<String?>);
+        Invocation.method(#addVideo, [], {
+          #youtubeUrl: youtubeUrl,
+          #title: title,
+          #artist: artist,
+          #artistId: artistId,
+          #description: description,
+          #genres: genres,
+          #venue: venue,
+          #city: city,
+          #country: country,
+          #duration: duration,
+          #recordedDate: recordedDate,
+          #status: status,
+          #featured: featured,
+          #sortOrder: sortOrder,
+          #tags: tags,
+          #latitude: latitude,
+          #longitude: longitude,
+          #soundcloudUrl: soundcloudUrl,
+          #spotifyPlaylistId: spotifyPlaylistId,
+          #appleMusicPlaylistId: appleMusicPlaylistId,
+        }),
+        returnValue: _i3.Future<String?>.value(),
+      ) as _i3.Future<String?>);
 
   @override
   _i3.Future<bool> updateVideo(String? id, Map<String, dynamic>? updates) =>
       (super.noSuchMethod(
-            Invocation.method(#updateVideo, [id, updates]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#updateVideo, [id, updates]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> deleteVideo(String? id, String? artistId) =>
       (super.noSuchMethod(
-            Invocation.method(#deleteVideo, [id, artistId]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#deleteVideo, [id, artistId]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> toggleLike(String? videoId, String? userId) =>
       (super.noSuchMethod(
-            Invocation.method(#toggleLike, [videoId, userId]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#toggleLike, [videoId, userId]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<bool> toggleSave(String? videoId, String? userId) =>
       (super.noSuchMethod(
-            Invocation.method(#toggleSave, [videoId, userId]),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+        Invocation.method(#toggleSave, [videoId, userId]),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i3.Future<void> incrementViews(String? videoId) =>
-      (super.noSuchMethod(
-            Invocation.method(#incrementViews, [videoId]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> incrementViews(String? videoId) => (super.noSuchMethod(
+        Invocation.method(#incrementViews, [videoId]),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
