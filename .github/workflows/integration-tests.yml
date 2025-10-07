@@ -1,10 +1,8 @@
 name: Integration Tests
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Temporarily disabled - Flutter integration tests don't support web yet
+  # Re-enable for iOS/Android specific testing when needed
   workflow_dispatch:
 
 jobs:
