@@ -18,13 +18,12 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        // Java 11 is fine; you can bump to 17 if your toolchain is on JDK 17.
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     defaultConfig {
