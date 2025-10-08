@@ -11,25 +11,23 @@ plugins {
 }
 
 android {
-    namespace = "com.example.backdrp_fm"
+    namespace = "com.backdrpfm.app"
 
     // These come from the Flutter Gradle plugin (keeps in sync with your Flutter SDK)
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        // Java 11 is fine; you can bump to 17 if your toolchain is on JDK 17.
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     defaultConfig {
-        // You can change this later to your final app id (e.g., com.backdrpfm.app)
-        applicationId = "com.example.backdrp_fm"
+        applicationId = "com.backdrpfm.app"
 
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion

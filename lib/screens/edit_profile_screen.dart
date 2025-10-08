@@ -114,6 +114,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       }
     }
 
+    if (!mounted) return;
+
     context.read<ProfileBloc>().add(
           UpdateProfile(
             userId: widget.user.uid,
@@ -123,20 +125,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         );
 
     // Show success message and navigate back
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Profile updated successfully'),
-          duration: Duration(seconds: 2),
-        ),
-      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Profile updated successfully'),
+        duration: Duration(seconds: 2),
+      ),
+    );
 
-      Future.delayed(const Duration(milliseconds: 500), () {
-        if (mounted) {
-          Navigator.pop(context);
-        }
-      });
-    }
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        Navigator.pop(context);
+      }
+    });
   }
 
   @override
