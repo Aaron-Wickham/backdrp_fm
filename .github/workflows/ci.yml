@@ -94,7 +94,7 @@ jobs:
 
       - name: Create Firebase config from secrets
         run: |
-          echo "${{ secrets.IOS_FIREBASE_CONFIG }}" | base64 --decode > ios/Runner/GoogleService-Info.plist
+          echo "${{ secrets.IOS_FIREBASE_CONFIG }}" | base64 -d > ios/Runner/GoogleService-Info.plist
 
       - name: Build iOS (no codesign)
         run: flutter build ios --release --no-codesign
@@ -132,7 +132,7 @@ jobs:
 
       - name: Create Firebase config from secrets
         run: |
-          echo "${{ secrets.ANDROID_FIREBASE_CONFIG }}" | base64 --decode > android/app/google-services.json
+          echo "${{ secrets.ANDROID_FIREBASE_CONFIG }}" | base64 -d > android/app/google-services.json
 
       - name: Build Android APK
         run: flutter build apk --release
