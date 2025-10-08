@@ -92,24 +92,9 @@ jobs:
           echo "ENVIRONMENT=staging" > .env.staging
           echo "ENVIRONMENT=production" > .env.production
 
-      - name: Create placeholder Firebase config
+      - name: Create Firebase config from secrets
         run: |
-          cat > ios/Runner/GoogleService-Info.plist << 'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>API_KEY</key>
-            <string>PLACEHOLDER_API_KEY</string>
-            <key>GCM_SENDER_ID</key>
-            <string>123456789</string>
-            <key>GOOGLE_APP_ID</key>
-            <string>1:123456789:ios:abcdef123456</string>
-            <key>PROJECT_ID</key>
-            <string>placeholder-project</string>
-          </dict>
-          </plist>
-          EOF
+          echo "${{ secrets.IOS_FIREBASE_CONFIG }}" | base64 --decode > ios/Runner/GoogleService-Info.plist
 
       - name: Build iOS (no codesign)
         run: flutter build ios --release --no-codesign
@@ -145,31 +130,9 @@ jobs:
           echo "ENVIRONMENT=staging" > .env.staging
           echo "ENVIRONMENT=production" > .env.production
 
-      - name: Create placeholder Firebase config
+      - name: Create Firebase config from secrets
         run: |
-          cat > android/app/google-services.json << 'EOF'
-          {
-            "project_info": {
-              "project_number": "123456789",
-              "project_id": "placeholder-project"
-            },
-            "client": [
-              {
-                "client_info": {
-                  "mobilesdk_app_id": "1:123456789:android:abcdef123456",
-                  "android_client_info": {
-                    "package_name": "com.backdrpfm.app"
-                  }
-                },
-                "api_key": [
-                  {
-                    "current_key": "PLACEHOLDER_API_KEY"
-                  }
-                ]
-              }
-            ]
-          }
-          EOF
+          echo "${{ secrets.ANDROID_FIREBASE_CONFIG }}" | base64 --decode > android/app/google-services.json
 
       - name: Build Android APK
         run: flutter build apk --release
