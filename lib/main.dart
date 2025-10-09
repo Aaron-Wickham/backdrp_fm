@@ -41,8 +41,10 @@ Future<void> main() async {
 
   AppLogger.info('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
 
-  // Initialize Firebase
-  await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
+  // Initialize Firebase (only if not already initialized)
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
+  }
 
   // Connect to Firebase Emulators in test mode
   if (const bool.fromEnvironment('USE_FIREBASE_EMULATORS')) {
