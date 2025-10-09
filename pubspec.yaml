@@ -92,10 +92,8 @@ flutter:
   uses-material-design: true
 
   # Assets
-  assets:
-    - .env.development
-    - .env.staging
-    - .env.production
+  # Note: .env files are loaded by flutter_dotenv, not as assets
+  # assets:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
