@@ -103,12 +103,26 @@ The app uses **three separate Firebase projects** for complete environment isola
 
 - `backdrp-fm-dev` - Development
 - `backdrp-fm-staging` - Staging/QA
-- `backdrp-fm-prod-4215e` - Production
+- `backdrop-fm` - Production
 
 **Firebase configuration files** (already generated):
 - `lib/firebase_options_dev.dart`
 - `lib/firebase_options_staging.dart`
 - `lib/firebase_options_prod.dart`
+
+**Download service account keys for seeding:**
+
+1. Download service account keys from Firebase Console:
+   - Dev: https://console.firebase.google.com/project/backdrp-fm-dev/settings/serviceaccounts/adminsdk
+   - Staging: https://console.firebase.google.com/project/backdrp-fm-staging/settings/serviceaccounts/adminsdk
+   - Prod: https://console.firebase.google.com/project/backdrop-fm/settings/serviceaccounts/adminsdk
+
+2. Save keys to `functions/` directory:
+   ```
+   functions/service-account-key-dev.json
+   functions/service-account-key-staging.json
+   functions/service-account-key.json
+   ```
 
 **Deploy Firestore rules and indexes to all environments:**
 ```bash
@@ -119,7 +133,7 @@ firebase deploy --only firestore --project backdrp-fm-dev
 firebase deploy --only firestore --project backdrp-fm-staging
 
 # Production
-firebase deploy --only firestore --project backdrp-fm-prod-4215e
+firebase deploy --only firestore --project backdrop-fm
 ```
 
 ### Running the App
@@ -145,6 +159,19 @@ flutter run -d chrome --dart-define=ENVIRONMENT=production
 
 ### Seed Test Data
 
+**Using npm scripts (recommended):**
+```bash
+# Seed development environment
+npm run seed:dev
+
+# Seed staging environment
+npm run seed:staging
+
+# Seed production (use with caution!)
+npm run seed:prod
+```
+
+**Using Node directly:**
 ```bash
 # Seed development environment
 node seed-all-test-data.js --project=backdrp-fm-dev
@@ -152,14 +179,17 @@ node seed-all-test-data.js --project=backdrp-fm-dev
 # Seed staging environment
 node seed-all-test-data.js --project=backdrp-fm-staging
 
-# Never seed production - manual data only
+# Seed production
+node seed-all-test-data.js --project=backdrop-fm
 ```
 
 This creates:
 - 6 test videos (5 published, 1 draft)
-- 5 test artists
+- 5 test artists (The Weeknd, Daft Punk, Billie Eilish, Robert Glasper, Travis Scott)
 - 2 test users
 - 2 test playlists
+
+**Note:** The seed script automatically uses the correct service account key and collection prefix based on the project ID.
 
 ## 🔧 Configuration
 
@@ -339,14 +369,20 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow and guidelines.
 # Deploy to specific environment
 firebase deploy --only firestore --project backdrp-fm-dev
 firebase deploy --only firestore --project backdrp-fm-staging
-firebase deploy --only firestore --project backdrp-fm-prod-4215e
+firebase deploy --only firestore --project backdrop-fm
 ```
 
 ### Database Seeding
 ```bash
-# Seed specific environment
+# Using npm scripts (recommended)
+npm run seed:dev
+npm run seed:staging
+npm run seed:prod
+
+# Using Node directly
 node seed-all-test-data.js --project=backdrp-fm-dev
 node seed-all-test-data.js --project=backdrp-fm-staging
+node seed-all-test-data.js --project=backdrop-fm
 ```
 
 ## 📄 License
