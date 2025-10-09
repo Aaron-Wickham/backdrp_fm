@@ -1,4 +1,12 @@
 {
+  "name": "backdrp-fm",
+  "version": "1.0.0",
+  "description": "BACKDRP.FM - Live music performance platform",
+  "scripts": {
+    "seed:dev": "node seed-all-test-data.js --project=backdrp-fm-dev",
+    "seed:staging": "node seed-all-test-data.js --project=backdrp-fm-staging",
+    "seed:prod": "node seed-all-test-data.js --project=backdrop-fm"
+  },
   "dependencies": {
     "firebase-admin": "^13.5.0"
   }
