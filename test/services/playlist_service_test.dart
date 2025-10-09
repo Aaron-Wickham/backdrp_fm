@@ -18,7 +18,7 @@ void main() {
       test('returns playlist when document exists', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Test Playlist',
           'description': 'Test description',
           'platform': 'spotify',
@@ -72,7 +72,7 @@ void main() {
         expect(playlistId, isNotNull);
 
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.exists, isTrue);
@@ -95,7 +95,7 @@ void main() {
         expect(playlistId, isNotNull);
 
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.data()?['description'], '');
@@ -116,7 +116,7 @@ void main() {
 
         // Assert
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.data()?['platform'], 'soundcloud');
@@ -127,7 +127,7 @@ void main() {
       test('updates playlist document with provided fields', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Original Title',
           'description': 'Original description',
           'platform': 'spotify',
@@ -149,7 +149,7 @@ void main() {
         expect(result, isTrue);
 
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.data()?['title'], 'Updated Title');
@@ -161,7 +161,7 @@ void main() {
       test('converts MusicPlatform enum to string if present', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Test',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/playlist',
@@ -176,7 +176,7 @@ void main() {
         expect(result, isTrue);
 
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.data()?['platform'], 'apple');
@@ -185,7 +185,7 @@ void main() {
       test('returns true on success', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Test',
           'featured': false,
         });
@@ -204,7 +204,7 @@ void main() {
       test('deletes playlist document', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Test Playlist',
         });
 
@@ -215,7 +215,7 @@ void main() {
         expect(result, isTrue);
 
         final doc = await fakeFirestore
-            .collection('dev_playlists')
+            .collection('playlists')
             .doc(playlistId)
             .get();
         expect(doc.exists, isFalse);
@@ -224,7 +224,7 @@ void main() {
       test('returns true on success', () async {
         // Arrange
         const playlistId = 'playlist123';
-        await fakeFirestore.collection('dev_playlists').doc(playlistId).set({
+        await fakeFirestore.collection('playlists').doc(playlistId).set({
           'title': 'Test',
         });
 
@@ -239,7 +239,7 @@ void main() {
     group('getAllPlaylists stream', () {
       test('returns all playlists ordered by sortOrder', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Playlist A',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/a',
@@ -248,7 +248,7 @@ void main() {
           'featured': false,
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Playlist B',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/b',
@@ -269,7 +269,7 @@ void main() {
     group('getFeaturedPlaylists stream', () {
       test('returns only featured playlists', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Featured Playlist',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/featured',
@@ -278,7 +278,7 @@ void main() {
           'featured': true,
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Regular Playlist',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/regular',
@@ -301,7 +301,7 @@ void main() {
     group('getPlaylistsByPlatform stream', () {
       test('returns playlists filtered by platform', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Spotify Playlist',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/playlist',
@@ -309,7 +309,7 @@ void main() {
           'sortOrder': 0,
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Apple Music Playlist',
           'platform': 'apple',
           'platformUrl': 'https://apple.com/playlist',
@@ -332,7 +332,7 @@ void main() {
     group('getPlaylistsByGenre stream', () {
       test('returns playlists filtered by genre', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Electronic Playlist',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/electronic',
@@ -341,7 +341,7 @@ void main() {
           'genres': ['Electronic', 'House'],
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Rock Playlist',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/rock',
@@ -364,7 +364,7 @@ void main() {
     group('searchPlaylists', () {
       test('performs case-insensitive search on playlist title', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Deep House Vibes',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/deep',
@@ -372,7 +372,7 @@ void main() {
           'curator': 'DJ Test',
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Techno Classics',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/techno',
@@ -391,7 +391,7 @@ void main() {
 
       test('performs case-insensitive search on curator', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Playlist One',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/one',
@@ -399,7 +399,7 @@ void main() {
           'curator': 'Special DJ',
         });
 
-        await fakeFirestore.collection('dev_playlists').doc('playlist2').set({
+        await fakeFirestore.collection('playlists').doc('playlist2').set({
           'title': 'Playlist Two',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/two',
@@ -418,7 +418,7 @@ void main() {
 
       test('matches partial strings', () async {
         // Arrange
-        await fakeFirestore.collection('dev_playlists').doc('playlist1').set({
+        await fakeFirestore.collection('playlists').doc('playlist1').set({
           'title': 'Electronic Paradise',
           'platform': 'spotify',
           'platformUrl': 'https://spotify.com/electronic',

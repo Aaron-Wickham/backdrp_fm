@@ -16,7 +16,7 @@ void main() {
       test('returns artist when document exists', () async {
         // Arrange
         const artistId = 'artist123';
-        await fakeFirestore.collection('dev_artists').doc(artistId).set({
+        await fakeFirestore.collection('artists').doc(artistId).set({
           'name': 'Test Artist',
           'bio': 'Test bio',
           'profileImageUrl': 'https://example.com/image.jpg',
@@ -66,7 +66,7 @@ void main() {
         expect(artistId, isNotNull);
 
         final doc =
-            await fakeFirestore.collection('dev_artists').doc(artistId).get();
+            await fakeFirestore.collection('artists').doc(artistId).get();
         expect(doc.exists, isTrue);
         expect(doc.data()?['name'], 'New Artist');
         expect(doc.data()?['bio'], 'Bio text');
@@ -83,7 +83,7 @@ void main() {
         expect(artistId, isNotNull);
 
         final doc =
-            await fakeFirestore.collection('dev_artists').doc(artistId).get();
+            await fakeFirestore.collection('artists').doc(artistId).get();
         expect(doc.data()?['bio'], '');
         expect(doc.data()?['profileImageUrl'], '');
         expect(doc.data()?['genres'], []);
@@ -96,7 +96,7 @@ void main() {
       test('updates artist document with provided fields', () async {
         // Arrange
         const artistId = 'artist123';
-        await fakeFirestore.collection('dev_artists').doc(artistId).set({
+        await fakeFirestore.collection('artists').doc(artistId).set({
           'name': 'Original Name',
           'bio': 'Original bio',
           'profileImageUrl': '',
@@ -120,7 +120,7 @@ void main() {
         expect(result, isTrue);
 
         final doc =
-            await fakeFirestore.collection('dev_artists').doc(artistId).get();
+            await fakeFirestore.collection('artists').doc(artistId).get();
         expect(doc.data()?['name'], 'Updated Name');
         expect(doc.data()?['bio'], 'Updated bio');
         expect(doc.data()?['location'], 'Paris');
@@ -129,7 +129,7 @@ void main() {
       test('returns true on success', () async {
         // Arrange
         const artistId = 'artist123';
-        await fakeFirestore.collection('dev_artists').doc(artistId).set({
+        await fakeFirestore.collection('artists').doc(artistId).set({
           'name': 'Test Artist',
           'totalSets': 0,
           'active': true,
@@ -148,7 +148,7 @@ void main() {
     group('getActiveArtists stream', () {
       test('returns stream of active artists', () async {
         // Arrange
-        await fakeFirestore.collection('dev_artists').doc('artist1').set({
+        await fakeFirestore.collection('artists').doc('artist1').set({
           'name': 'Artist A',
           'bio': '',
           'profileImageUrl': '',
@@ -161,7 +161,7 @@ void main() {
           'active': true,
         });
 
-        await fakeFirestore.collection('dev_artists').doc('artist2').set({
+        await fakeFirestore.collection('artists').doc('artist2').set({
           'name': 'Artist B',
           'bio': '',
           'profileImageUrl': '',
@@ -174,7 +174,7 @@ void main() {
           'active': true,
         });
 
-        await fakeFirestore.collection('dev_artists').doc('artist3').set({
+        await fakeFirestore.collection('artists').doc('artist3').set({
           'name': 'Inactive Artist',
           'bio': '',
           'profileImageUrl': '',
@@ -200,7 +200,7 @@ void main() {
     group('getArtistsByGenre stream', () {
       test('returns artists filtered by genre', () async {
         // Arrange
-        await fakeFirestore.collection('dev_artists').doc('artist1').set({
+        await fakeFirestore.collection('artists').doc('artist1').set({
           'name': 'Electronic Artist',
           'bio': '',
           'profileImageUrl': '',
@@ -213,7 +213,7 @@ void main() {
           'active': true,
         });
 
-        await fakeFirestore.collection('dev_artists').doc('artist2').set({
+        await fakeFirestore.collection('artists').doc('artist2').set({
           'name': 'Rock Artist',
           'bio': '',
           'profileImageUrl': '',
@@ -240,7 +240,7 @@ void main() {
     group('searchArtists', () {
       test('performs case-insensitive search on artist name', () async {
         // Arrange
-        await fakeFirestore.collection('dev_artists').doc('artist1').set({
+        await fakeFirestore.collection('artists').doc('artist1').set({
           'name': 'DJ Shadow',
           'bio': '',
           'profileImageUrl': '',
@@ -253,7 +253,7 @@ void main() {
           'active': true,
         });
 
-        await fakeFirestore.collection('dev_artists').doc('artist2').set({
+        await fakeFirestore.collection('artists').doc('artist2').set({
           'name': 'The Chemical Brothers',
           'bio': '',
           'profileImageUrl': '',
@@ -277,7 +277,7 @@ void main() {
 
       test('only returns active artists in search', () async {
         // Arrange
-        await fakeFirestore.collection('dev_artists').doc('artist1').set({
+        await fakeFirestore.collection('artists').doc('artist1').set({
           'name': 'Active Test',
           'bio': '',
           'profileImageUrl': '',
@@ -290,7 +290,7 @@ void main() {
           'active': true,
         });
 
-        await fakeFirestore.collection('dev_artists').doc('artist2').set({
+        await fakeFirestore.collection('artists').doc('artist2').set({
           'name': 'Inactive Test',
           'bio': '',
           'profileImageUrl': '',

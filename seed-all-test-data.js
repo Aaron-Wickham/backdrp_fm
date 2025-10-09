@@ -6,20 +6,18 @@ const args = process.argv.slice(2);
 const projectFlag = args.find(arg => arg.startsWith('--project='));
 const projectId = projectFlag ? projectFlag.split('=')[1] : 'backdrp-fm-dev';
 
-// Determine environment prefix and service account key based on project
-let envPrefix = 'dev_';
+// Determine service account key based on project
+// Note: All environments use the same collection names (no prefixes)
 let serviceAccountPath = './functions/service-account-key-dev.json';
 
 if (projectId.includes('staging')) {
-  envPrefix = 'staging_';
   serviceAccountPath = './functions/service-account-key-staging.json';
 } else if (projectId.includes('prod') || projectId === 'backdrop-fm') {
-  envPrefix = '';
   serviceAccountPath = './functions/service-account-key.json';
 }
 
 console.log(`🔧 Initializing Firebase Admin SDK for project: ${projectId}`);
-console.log(`📝 Using collection prefix: "${envPrefix}"`);
+console.log(`📝 All environments use the same collection structure (no prefixes)`);
 console.log(`🔑 Using service account: ${serviceAccountPath}`);
 
 const serviceAccount = require(serviceAccountPath);
@@ -31,12 +29,12 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-// Use environment-appropriate prefix for all collections
+// All environments use the same collection names
 const COLLECTIONS = {
-  videos: `${envPrefix}videos`,
-  users: `${envPrefix}users`,
-  artists: `${envPrefix}artists`,
-  playlists: `${envPrefix}playlists`
+  videos: 'videos',
+  users: 'users',
+  artists: 'artists',
+  playlists: 'playlists'
 };
 
 // Test Videos
@@ -340,7 +338,7 @@ const testPlaylists = [
 ];
 
 async function seedDatabase() {
-  const envName = envPrefix ? envPrefix.replace('_', '').toUpperCase() : 'PRODUCTION';
+  const envName = projectId.includes('staging') ? 'STAGING' : projectId.includes('prod') ? 'PRODUCTION' : 'DEVELOPMENT';
   console.log(`🌱 Starting to seed ${envName} database with comprehensive test data...\n`);
 
   try {
