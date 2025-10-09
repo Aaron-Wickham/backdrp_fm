@@ -46,9 +46,9 @@ app.*.map.json
 /android/build/
 
 # Firebase Admin SDK
-functions/service-account-key.json
-service-account-key.json
-**/service-account-key.json
+functions/service-account-key*.json
+service-account-key*.json
+**/service-account-key*.json
 
 # Environment files (keep .env.example)
 .env
