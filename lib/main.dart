@@ -42,8 +42,14 @@ Future<void> main() async {
   AppLogger.info('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
 
   // Initialize Firebase (only if not already initialized)
-  if (Firebase.apps.isEmpty) {
+  try {
     await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
+  } catch (e) {
+    if (e.toString().contains('duplicate-app')) {
+      AppLogger.debug('Firebase already initialized, skipping...');
+    } else {
+      rethrow;
+    }
   }
 
   // Connect to Firebase Emulators in test mode
