@@ -10,12 +10,18 @@ const _topic = 'releases';
 
 @pragma('vm:entry-point')
 Future<void> _bg(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  }
 }
 
 Future<void> initFirebaseAndNotifications({required String webVapidKey}) async {
   // 1) Core + messaging bootstrap
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  }
   FirebaseMessaging.onBackgroundMessage(_bg);
 
   // 2) Ask for notification permission (Web + Android 13+ use same API)
