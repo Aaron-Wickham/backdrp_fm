@@ -71,10 +71,8 @@ void main() {
         // Assert
         expect(playlistId, isNotNull);
 
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.exists, isTrue);
         expect(doc.data()?['title'], 'New Playlist');
         expect(doc.data()?['platform'], 'spotify');
@@ -94,10 +92,8 @@ void main() {
         // Assert
         expect(playlistId, isNotNull);
 
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.data()?['description'], '');
         expect(doc.data()?['embedCode'], '');
         expect(doc.data()?['genres'], []);
@@ -115,10 +111,8 @@ void main() {
         );
 
         // Assert
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.data()?['platform'], 'soundcloud');
       });
     });
@@ -148,10 +142,8 @@ void main() {
         // Assert
         expect(result, isTrue);
 
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.data()?['title'], 'Updated Title');
         expect(doc.data()?['description'], 'Updated description');
         expect(doc.data()?['trackCount'], 20);
@@ -175,10 +167,8 @@ void main() {
         // Assert
         expect(result, isTrue);
 
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.data()?['platform'], 'apple');
       });
 
@@ -214,10 +204,8 @@ void main() {
         // Assert
         expect(result, isTrue);
 
-        final doc = await fakeFirestore
-            .collection('playlists')
-            .doc(playlistId)
-            .get();
+        final doc =
+            await fakeFirestore.collection('playlists').doc(playlistId).get();
         expect(doc.exists, isFalse);
       });
 

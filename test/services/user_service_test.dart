@@ -30,8 +30,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
       });
 
@@ -51,8 +50,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(
             doc.data()?['profileImageUrl'], 'https://example.com/profile.jpg');
       });
@@ -74,8 +72,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
         expect(doc.data()?['profileImageUrl'], 'new.jpg');
       });
@@ -326,8 +323,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], true);
       });
 
@@ -368,8 +364,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], false);
       });
 
@@ -408,8 +403,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['pushSubscribed'], true);
       });
     });
@@ -426,8 +420,7 @@ void main() {
         await userService.updateLastActive(userId);
 
         // Assert
-        final doc =
-            await fakeFirestore.collection('users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['lastActive'], isNotNull);
       });
 
