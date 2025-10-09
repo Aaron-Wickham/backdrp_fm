@@ -1,22 +1,28 @@
 // Comprehensive test data seeding script
 const admin = require('firebase-admin');
-const serviceAccount = require('./functions/service-account-key.json');
 
 // Parse command line arguments
 const args = process.argv.slice(2);
 const projectFlag = args.find(arg => arg.startsWith('--project='));
 const projectId = projectFlag ? projectFlag.split('=')[1] : 'backdrp-fm-dev';
 
-// Determine environment prefix based on project
+// Determine environment prefix and service account key based on project
 let envPrefix = 'dev_';
+let serviceAccountPath = './functions/service-account-key-dev.json';
+
 if (projectId.includes('staging')) {
   envPrefix = 'staging_';
-} else if (projectId.includes('prod')) {
+  serviceAccountPath = './functions/service-account-key-staging.json';
+} else if (projectId.includes('prod') || projectId === 'backdrop-fm') {
   envPrefix = '';
+  serviceAccountPath = './functions/service-account-key.json';
 }
 
 console.log(`🔧 Initializing Firebase Admin SDK for project: ${projectId}`);
 console.log(`📝 Using collection prefix: "${envPrefix}"`);
+console.log(`🔑 Using service account: ${serviceAccountPath}`);
+
+const serviceAccount = require(serviceAccountPath);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
