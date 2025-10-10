@@ -743,7 +743,7 @@ const testArtists = [
 // Test Users
 const testUsers = [
   {
-    uid: 'dev_test_user_001',
+    uid: 'nHzTdA6GatXzjP3vh3Sdg9aS8vF3',
     email: 'backdrp.fm@gmail.com',
     displayName: 'Aaron Wickham',
     photoURL: 'https://ui-avatars.com/api/?name=Aaron+Wickham&size=150&background=1a1a1a&color=ffffff&bold=true',
@@ -817,7 +817,7 @@ const testPlaylists = [
     id: 'dev_playlist_001',
     name: 'My Favorites',
     description: 'Collection of my favorite live performances',
-    userId: 'dev_test_user_001',
+    userId: 'nHzTdA6GatXzjP3vh3Sdg9aS8vF3',
     videoIds: ['dev_video_001', 'dev_video_003', 'dev_video_009'],
     isPublic: true,
     createdAt: new Date(),
@@ -867,7 +867,7 @@ const testPlaylists = [
     id: 'dev_playlist_006',
     name: 'Late Night Chill',
     description: 'Perfect for late night vibes',
-    userId: 'dev_test_user_001',
+    userId: 'nHzTdA6GatXzjP3vh3Sdg9aS8vF3',
     videoIds: ['dev_video_003', 'dev_video_007', 'dev_video_012', 'dev_video_014'],
     isPublic: true,
     createdAt: new Date(),
