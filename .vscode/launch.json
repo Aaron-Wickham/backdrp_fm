@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Development (backdrp-fm-dev)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=ENVIRONMENT=development",
+        "--flavor=dev"
+      ]
+    },
+    {
+      "name": "Staging (backdrp-fm-staging)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=ENVIRONMENT=staging",
+        "--flavor=staging"
+      ]
+    },
+    {
+      "name": "Production (backdrp-fm-prod)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=ENVIRONMENT=production",
+        "--flavor=prod"
+      ]
+    },
+    {
+      "name": "Local Emulators (offline)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--dart-define=USE_FIREBASE_EMULATORS=true",
+        "--flavor=dev"
+      ]
+    }
+  ]
+}
