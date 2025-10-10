@@ -7,18 +7,8 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    // Helper function to check if user is admin (checks environment-specific users collection)
-    function isAdminDev() {
-      return isAuthenticated() &&
-             get(/databases/$(database)/documents/dev_users/$(request.auth.uid)).data.role == 'admin';
-    }
-
-    function isAdminStaging() {
-      return isAuthenticated() &&
-             get(/databases/$(database)/documents/staging_users/$(request.auth.uid)).data.role == 'admin';
-    }
-
-    function isAdminProd() {
+    // Helper function to check if user is admin
+    function isAdmin() {
       return isAuthenticated() &&
              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
@@ -28,97 +18,36 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
-    // ========================================
-    // DEVELOPMENT COLLECTIONS (dev_*)
-    // ========================================
-
-    match /dev_videos/{videoId} {
-      allow read: if resource.data.status == 'published' || isAdminDev();
-      allow create, update, delete: if isAdminDev();
-    }
-
-    match /dev_artists/{artistId} {
-      allow read: if true;
-      allow create, update, delete: if isAdminDev();
-    }
-
-    match /dev_users/{userId} {
-      allow read: if isOwner(userId) || isAdminDev();
-      allow create, update: if isOwner(userId);
-      allow delete: if isAdminDev();
-    }
-
-    match /dev_playlists/{playlistId} {
-      allow read: if true;
-      allow create, update, delete: if isAdminDev();
-    }
-
-    match /dev_mailingList/{userId} {
-      allow read: if isOwner(userId) || isAdminDev();
-      allow create, update: if isOwner(userId);
-      allow delete: if isAdminDev();
-    }
-
-    // ========================================
-    // STAGING COLLECTIONS (staging_*)
-    // ========================================
-
-    match /staging_videos/{videoId} {
-      allow read: if resource.data.status == 'published' || isAdminStaging();
-      allow create, update, delete: if isAdminStaging();
-    }
-
-    match /staging_artists/{artistId} {
-      allow read: if true;
-      allow create, update, delete: if isAdminStaging();
-    }
-
-    match /staging_users/{userId} {
-      allow read: if isOwner(userId) || isAdminStaging();
-      allow create, update: if isOwner(userId);
-      allow delete: if isAdminStaging();
-    }
-
-    match /staging_playlists/{playlistId} {
-      allow read: if true;
-      allow create, update, delete: if isAdminStaging();
-    }
-
-    match /staging_mailingList/{userId} {
-      allow read: if isOwner(userId) || isAdminStaging();
-      allow create, update: if isOwner(userId);
-      allow delete: if isAdminStaging();
-    }
-
-    // ========================================
-    // PRODUCTION COLLECTIONS
-    // ========================================
-
+    // Videos - published videos are public, all operations require admin
     match /videos/{videoId} {
-      allow read: if resource.data.status == 'published' || isAdminProd();
-      allow create, update, delete: if isAdminProd();
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create, update, delete: if isAdmin();
     }
 
+    // Artists - public read, admin write
     match /artists/{artistId} {
       allow read: if true;
-      allow create, update, delete: if isAdminProd();
+      allow create, update, delete: if isAdmin();
     }
 
+    // Users - users can read/update their own profile, admin can do anything
     match /users/{userId} {
-      allow read: if isOwner(userId) || isAdminProd();
+      allow read: if isOwner(userId) || isAdmin();
       allow create, update: if isOwner(userId);
-      allow delete: if isAdminProd();
+      allow delete: if isAdmin();
     }
 
+    // Playlists - public read, admin write
     match /playlists/{playlistId} {
       allow read: if true;
-      allow create, update, delete: if isAdminProd();
+      allow create, update, delete: if isAdmin();
     }
 
+    // Mailing list - users can manage their own subscription, admin can do anything
     match /mailingList/{userId} {
-      allow read: if isOwner(userId) || isAdminProd();
+      allow read: if isOwner(userId) || isAdmin();
       allow create, update: if isOwner(userId);
-      allow delete: if isAdminProd();
+      allow delete: if isAdmin();
     }
   }
 }
