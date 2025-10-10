@@ -7,9 +7,10 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=ENVIRONMENT=development",
-        "--flavor=dev"
-      ]
+        "--dart-define=ENVIRONMENT=development"
+      ],
+      "flutterMode": "debug",
+      "preLaunchTask": "Copy Dev Firebase Config"
     },
     {
       "name": "Staging (backdrp-fm-staging)",
@@ -17,9 +18,10 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=ENVIRONMENT=staging",
-        "--flavor=staging"
-      ]
+        "--dart-define=ENVIRONMENT=staging"
+      ],
+      "flutterMode": "debug",
+      "preLaunchTask": "Copy Staging Firebase Config"
     },
     {
       "name": "Production (backdrp-fm-prod)",
@@ -27,9 +29,10 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=ENVIRONMENT=production",
-        "--flavor=prod"
-      ]
+        "--dart-define=ENVIRONMENT=production"
+      ],
+      "flutterMode": "debug",
+      "preLaunchTask": "Copy Prod Firebase Config"
     },
     {
       "name": "Local Emulators (offline)",
@@ -37,9 +40,10 @@
       "type": "dart",
       "program": "lib/main.dart",
       "args": [
-        "--dart-define=USE_FIREBASE_EMULATORS=true",
-        "--flavor=dev"
-      ]
+        "--dart-define=USE_FIREBASE_EMULATORS=true"
+      ],
+      "flutterMode": "debug",
+      "preLaunchTask": "Copy Dev Firebase Config"
     }
   ]
 }

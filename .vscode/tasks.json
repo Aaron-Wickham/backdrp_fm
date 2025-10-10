@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Copy Dev Firebase Config",
+      "type": "shell",
+      "command": "cp ios/Runner/Firebase/Dev/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist && cp android/app/src/dev/google-services.json android/app/google-services.json",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Copy Staging Firebase Config",
+      "type": "shell",
+      "command": "cp ios/Runner/Firebase/Staging/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist && cp android/app/src/staging/google-services.json android/app/google-services.json",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Copy Prod Firebase Config",
+      "type": "shell",
+      "command": "cp ios/Runner/Firebase/Prod/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist && cp android/app/src/prod/google-services.json android/app/google-services.json",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    }
+  ]
+}
