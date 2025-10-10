@@ -743,18 +743,6 @@ const testArtists = [
 // Test Users
 const testUsers = [
   {
-    uid: 'XedqfmXgWsOXmCLFBNDG6i2zUby2',
-    email: 'backdrp.fm@gmail.com',
-    displayName: 'Aaron Wickham',
-    photoURL: 'https://ui-avatars.com/api/?name=Aaron+Wickham&size=150&background=1a1a1a&color=ffffff&bold=true',
-    bio: 'Founder of BACKDRP.FM - Curating the best live music sessions',
-    createdAt: new Date(),
-    savedVideos: ['dev_video_001', 'dev_video_003', 'dev_video_006', 'dev_video_009'],
-    followedArtists: ['dev_artist_001', 'dev_artist_003', 'dev_artist_006', 'dev_artist_009'],
-    playlists: ['dev_playlist_001'],
-    role: 'admin',
-  },
-  {
     uid: 'dev_test_user_002',
     email: 'test2@backdrp.fm',
     displayName: 'Test User 2',
@@ -814,16 +802,6 @@ const testUsers = [
 // Test Playlists
 const testPlaylists = [
   {
-    id: 'dev_playlist_001',
-    name: 'My Favorites',
-    description: 'Collection of my favorite live performances',
-    userId: 'XedqfmXgWsOXmCLFBNDG6i2zUby2',
-    videoIds: ['dev_video_001', 'dev_video_003', 'dev_video_009'],
-    isPublic: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
     id: 'dev_playlist_002',
     name: 'Electronic Vibes',
     description: 'Best electronic live sets',
@@ -859,16 +837,6 @@ const testPlaylists = [
     description: 'Music from around the world',
     userId: 'dev_test_user_005',
     videoIds: ['dev_video_007', 'dev_video_011', 'dev_video_015'],
-    isPublic: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: 'dev_playlist_006',
-    name: 'Late Night Chill',
-    description: 'Perfect for late night vibes',
-    userId: 'XedqfmXgWsOXmCLFBNDG6i2zUby2',
-    videoIds: ['dev_video_003', 'dev_video_007', 'dev_video_012', 'dev_video_014'],
     isPublic: true,
     createdAt: new Date(),
     updatedAt: new Date(),

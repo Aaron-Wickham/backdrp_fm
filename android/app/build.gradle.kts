@@ -35,6 +35,26 @@ android {
         versionName = flutter.versionName
     }
 
+    flavorDimensions += "environment"
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "BACKDRP.FM Dev")
+        }
+        create("staging") {
+            dimension = "environment"
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            resValue("string", "app_name", "BACKDRP.FM Staging")
+        }
+        create("prod") {
+            dimension = "environment"
+            resValue("string", "app_name", "BACKDRP.FM")
+        }
+    }
+
     buildTypes {
         release {
             // TODO: configure a real signingConfig for Play/App Store releases.

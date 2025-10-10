@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
 import '../../theme/app_spacing.dart';
+import '../../services/service_provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -37,31 +37,14 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await ServiceProvider.auth.signUp(
         email: _emailController.text.trim(),
         password: _passwordController.text,
+        displayName: _displayNameController.text.trim(),
       );
 
-      if (credential.user != null) {
-        // Update display name
-        await credential.user!
-            .updateDisplayName(_displayNameController.text.trim());
-
-        // Create user document in Firestore
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(credential.user!.uid)
-            .set({
-          'email': credential.user!.email,
-          'displayName': _displayNameController.text.trim(),
-          'role': 'user',
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-
-        if (mounted) {
-          Navigator.of(context).pop();
-        }
+      if (mounted) {
+        Navigator.of(context).pop();
       }
     } on FirebaseAuthException catch (e) {
       String message = 'An error occurred';

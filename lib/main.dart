@@ -40,6 +40,8 @@ Future<void> main() async {
   await AppEnvironment.init();
 
   AppLogger.info('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
+  AppLogger.info(
+      '🔥 Connecting to Firebase project: ${AppEnvironment.firebaseOptions.projectId}');
 
   // Initialize Firebase (only if not already initialized)
   try {
