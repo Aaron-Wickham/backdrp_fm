@@ -744,14 +744,15 @@ const testArtists = [
 const testUsers = [
   {
     uid: 'dev_test_user_001',
-    email: 'test1@backdrp.fm',
-    displayName: 'Test User 1',
-    photoURL: 'https://via.placeholder.com/150?text=User1',
-    bio: 'Music enthusiast and live session lover',
+    email: 'backdrp.fm@gmail.com',
+    displayName: 'Aaron Wickham',
+    photoURL: 'https://ui-avatars.com/api/?name=Aaron+Wickham&size=150&background=1a1a1a&color=ffffff&bold=true',
+    bio: 'Founder of BACKDRP.FM - Curating the best live music sessions',
     createdAt: new Date(),
-    savedVideos: ['dev_video_001', 'dev_video_003', 'dev_video_009'],
-    followedArtists: ['dev_artist_001', 'dev_artist_003', 'dev_artist_009'],
+    savedVideos: ['dev_video_001', 'dev_video_003', 'dev_video_006', 'dev_video_009'],
+    followedArtists: ['dev_artist_001', 'dev_artist_003', 'dev_artist_006', 'dev_artist_009'],
     playlists: ['dev_playlist_001'],
+    role: 'admin',
   },
   {
     uid: 'dev_test_user_002',
