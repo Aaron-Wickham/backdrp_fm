@@ -40,10 +40,18 @@ Future<void> main() async {
   await AppEnvironment.init();
 
   AppLogger.info('🚀 Starting BACKDRP.FM in ${AppEnvironment.name} mode');
+  AppLogger.info(
+      '🔥 Connecting to Firebase project: ${AppEnvironment.firebaseOptions.projectId}');
 
   // Initialize Firebase (only if not already initialized)
-  if (Firebase.apps.isEmpty) {
+  try {
     await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
+  } catch (e) {
+    if (e.toString().contains('duplicate-app')) {
+      AppLogger.debug('Firebase already initialized, skipping...');
+    } else {
+      rethrow;
+    }
   }
 
   // Connect to Firebase Emulators in test mode
@@ -191,7 +199,11 @@ class MainScreen extends StatelessWidget {
 
 /// Connect to Firebase Emulators for integration testing
 Future<void> _connectToFirebaseEmulators() async {
-  const host = 'localhost';
+  // Use localhost for emulators/simulators, or Mac's IP for physical devices
+  // You can override this by setting EMULATOR_HOST environment variable
+  const defaultHost = kIsWeb ? 'localhost' : '192.168.40.79';
+  const host =
+      String.fromEnvironment('EMULATOR_HOST', defaultValue: defaultHost);
 
   try {
     // Auth Emulator
@@ -207,7 +219,7 @@ Future<void> _connectToFirebaseEmulators() async {
     AppLogger.info('   Auth: $host:9099');
     AppLogger.info('   Firestore: $host:8080');
     AppLogger.info('   Storage: $host:9199');
-    AppLogger.info('   Emulator UI: http://localhost:4000');
+    AppLogger.info('   Emulator UI: http://$host:4000');
   } catch (e) {
     AppLogger.warning('⚠️  Failed to connect to Firebase Emulators', error: e);
     AppLogger.warning(

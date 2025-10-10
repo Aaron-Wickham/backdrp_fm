@@ -17,7 +17,7 @@ void main() {
       test('updates displayName when provided', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'displayName': 'Old Name',
           'email': 'test@example.com',
         });
@@ -30,15 +30,14 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
       });
 
       test('updates profileImageUrl when provided', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'displayName': 'Test User',
           'profileImageUrl': '',
         });
@@ -51,8 +50,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(
             doc.data()?['profileImageUrl'], 'https://example.com/profile.jpg');
       });
@@ -60,7 +58,7 @@ void main() {
       test('updates both fields when both provided', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'displayName': 'Old Name',
           'profileImageUrl': 'old.jpg',
         });
@@ -74,8 +72,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['displayName'], 'New Name');
         expect(doc.data()?['profileImageUrl'], 'new.jpg');
       });
@@ -83,7 +80,7 @@ void main() {
       test('returns true on success', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'displayName': 'Test',
         });
 
@@ -102,7 +99,7 @@ void main() {
       test('updates newSets preference', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'preferences': {
             'notificationPreferences': {'newSets': false}
           },
@@ -123,7 +120,7 @@ void main() {
       test('updates multiple preferences', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'preferences': {
             'notificationPreferences': {
               'newSets': false,
@@ -151,7 +148,7 @@ void main() {
       test('updates favorite genres list', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'preferences': {'favoriteGenres': []},
         });
 
@@ -169,7 +166,7 @@ void main() {
       test('returns true on success', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({});
+        await fakeFirestore.collection('users').doc(userId).set({});
 
         // Act
         final result = await userService.updateFavoriteGenres(userId, ['Rock']);
@@ -183,7 +180,7 @@ void main() {
       test('returns empty list when no liked videos', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'likedVideos': [],
         });
 
@@ -223,7 +220,7 @@ void main() {
           'likeCount': 20,
         });
 
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'likedVideos': [videoId1, videoId2],
         });
 
@@ -251,7 +248,7 @@ void main() {
           'likeCount': 10,
         });
 
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'likedVideos': [videoId, 'nonexistent'],
         });
 
@@ -269,7 +266,7 @@ void main() {
       test('returns empty list when no saved videos', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'savedVideos': [],
         });
 
@@ -297,7 +294,7 @@ void main() {
           'likeCount': 10,
         });
 
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'savedVideos': [videoId],
         });
 
@@ -315,7 +312,7 @@ void main() {
       test('sets emailSubscribed to true when subscribing', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'email': 'test@example.com',
           'displayName': 'Test User',
           'emailSubscribed': false,
@@ -326,15 +323,14 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], true);
       });
 
       test('adds user to mailingList when subscribing', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'email': 'test@example.com',
           'displayName': 'Test User',
           'emailSubscribed': false,
@@ -354,7 +350,7 @@ void main() {
       test('sets emailSubscribed to false when unsubscribing', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'email': 'test@example.com',
           'emailSubscribed': true,
         });
@@ -368,15 +364,14 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['emailSubscribed'], false);
       });
 
       test('marks mailingList entry as inactive when unsubscribing', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'email': 'test@example.com',
           'emailSubscribed': true,
         });
@@ -399,7 +394,7 @@ void main() {
       test('updates pushSubscribed field', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'pushSubscribed': false,
         });
 
@@ -408,8 +403,7 @@ void main() {
 
         // Assert
         expect(result, isTrue);
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['pushSubscribed'], true);
       });
     });
@@ -418,7 +412,7 @@ void main() {
       test('updates lastActive field', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'lastActive': Timestamp.fromDate(DateTime(2020, 1, 1)),
         });
 
@@ -426,8 +420,7 @@ void main() {
         await userService.updateLastActive(userId);
 
         // Assert
-        final doc =
-            await fakeFirestore.collection('dev_users').doc(userId).get();
+        final doc = await fakeFirestore.collection('users').doc(userId).get();
         expect(doc.data()?['lastActive'], isNotNull);
       });
 
@@ -444,7 +437,7 @@ void main() {
       test('returns user when document exists', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'uid': userId,
           'email': 'test@example.com',
           'displayName': 'Test User',
@@ -475,7 +468,7 @@ void main() {
       test('returns stream of user profile', () async {
         // Arrange
         const userId = 'user123';
-        await fakeFirestore.collection('dev_users').doc(userId).set({
+        await fakeFirestore.collection('users').doc(userId).set({
           'uid': userId,
           'email': 'test@example.com',
           'displayName': 'Test User',

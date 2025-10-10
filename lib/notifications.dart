@@ -4,23 +4,21 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-import 'firebase_options.dart';
+import 'config/environment.dart';
 
 const _topic = 'releases';
 
 @pragma('vm:entry-point')
 Future<void> _bg(RemoteMessage message) async {
   if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
   }
 }
 
 Future<void> initFirebaseAndNotifications({required String webVapidKey}) async {
   // 1) Core + messaging bootstrap
   if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(options: AppEnvironment.firebaseOptions);
   }
   FirebaseMessaging.onBackgroundMessage(_bg);
 

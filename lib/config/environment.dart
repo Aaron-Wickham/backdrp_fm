@@ -91,16 +91,10 @@ class AppEnvironment {
     }
   }
 
-  // Collection name prefixes for different environments
+  // All environments use the same collection names (no prefixes)
+  // This ensures code works identically across dev/staging/prod
   static String getCollectionName(String baseName) {
-    switch (_current) {
-      case Environment.development:
-        return 'dev_$baseName';
-      case Environment.staging:
-        return 'staging_$baseName';
-      case Environment.production:
-        return baseName;
-    }
+    return baseName;
   }
 
   /// Get Firebase options for current environment
