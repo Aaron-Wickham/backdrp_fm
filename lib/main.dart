@@ -200,7 +200,8 @@ Future<void> _connectToFirebaseEmulators() async {
   // Use localhost for emulators/simulators, or Mac's IP for physical devices
   // You can override this by setting EMULATOR_HOST environment variable
   const defaultHost = kIsWeb ? 'localhost' : '192.168.40.79';
-  const host = String.fromEnvironment('EMULATOR_HOST', defaultValue: defaultHost);
+  const host =
+      String.fromEnvironment('EMULATOR_HOST', defaultValue: defaultHost);
 
   try {
     // Auth Emulator
