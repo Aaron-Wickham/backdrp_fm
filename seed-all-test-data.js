@@ -180,7 +180,7 @@ const testVideos = [
     youtubeId: 'zPjWtQKZPjY',
     thumbnailUrl: 'https://img.youtube.com/vi/zPjWtQKZPjY/maxresdefault.jpg',
     title: 'Live Drum & Bass Set',
-    artist: 'Pendulum',
+    artist: 'Jack Slayton',
     artistId: 'dev_artist_006',
     description: 'Epic drum and bass live performance',
     genres: ['Electronic', 'Drum & Bass'],
@@ -557,16 +557,16 @@ const testArtists = [
   },
   {
     id: 'dev_artist_006',
-    name: 'Pendulum',
-    bio: 'Australian drum and bass band',
+    name: 'Jack Slayton',
+    bio: 'Drum and bass DJ and producer',
     genres: ['Electronic', 'Drum & Bass'],
-    profileImageUrl: 'https://ui-avatars.com/api/?name=Pendulum&size=400&background=FF4500&color=000000&bold=true',
-    bannerImageUrl: 'https://picsum.photos/seed/pendulum/1200/400',
-    location: 'Perth, Australia',
+    profileImageUrl: 'https://ui-avatars.com/api/?name=Jack+Slayton&size=400&background=FF4500&color=000000&bold=true',
+    bannerImageUrl: 'https://picsum.photos/seed/jackslayton/1200/400',
+    location: 'London, UK',
     socialLinks: {
-      instagram: 'https://instagram.com/pendulum',
-      twitter: 'https://twitter.com/pendulum',
-      spotify: 'https://open.spotify.com/artist/pendulum'
+      instagram: 'https://instagram.com/jackslayton',
+      twitter: 'https://twitter.com/jackslayton',
+      spotify: 'https://open.spotify.com/artist/jackslayton'
     },
     totalSets: 1,
     createdDate: new Date(),
