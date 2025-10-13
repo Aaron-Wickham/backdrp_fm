@@ -132,16 +132,17 @@ jobs:
 
       - name: Create Firebase config from secrets
         run: |
-          echo "${{ secrets.ANDROID_FIREBASE_CONFIG }}" | base64 -d > android/app/google-services.json
+          mkdir -p android/app/src/prod
+          echo "${{ secrets.ANDROID_FIREBASE_CONFIG }}" | base64 -d > android/app/src/prod/google-services.json
 
-      - name: Build Android APK
-        run: flutter build apk --release
+      - name: Build Android APK (prod flavor only)
+        run: flutter build apk --release --flavor prod
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: android-apk-prod
+          path: build/app/outputs/flutter-apk/app-prod-release.apk
 
   build-web:
     name: Build Web
