@@ -66,21 +66,24 @@ Before you begin, ensure you have:
 
 ### Branch Strategy
 
-We use a feature branch workflow:
+We follow GitHub Flow:
 
-- `main` - Production-ready code
-- `develop` - Integration branch for features
-- `feature/*` - New features
-- `fix/*` - Bug fixes
-- `refactor/*` - Code refactoring
-- `docs/*` - Documentation updates
+- `main` - Production-ready code (protected branch)
+- `feature/*` - New features (branch from main)
+- `fix/*` - Bug fixes (branch from main)
+- `hotfix/*` - Critical production fixes (branch from main)
+- `refactor/*` - Code refactoring (branch from main)
+- `docs/*` - Documentation updates (branch from main)
+- `chore/*` - Maintenance tasks (branch from main)
+
+**Note:** We do NOT use a separate `develop` branch. All work branches from `main` and merges back to `main` via pull requests.
 
 ### Creating a Feature Branch
 
 ```bash
-# Make sure you're on develop and up to date
-git checkout develop
-git pull upstream develop
+# Make sure you're on main and up to date
+git checkout main
+git pull origin main
 
 # Create a new feature branch
 git checkout -b feature/your-feature-name

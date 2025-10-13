@@ -40,18 +40,31 @@ firebase apps:sdkconfig IOS --project=backdrp-fm-prod-4215e -o ios/Runner/Fireba
 
 ## Launch Configurations
 
-Use VS Code launch configurations to run different environments:
-- **Development**: Connects to `backdrp-fm-dev`
-- **Staging**: Connects to `backdrp-fm-staging`
-- **Production**: Connects to `backdrp-fm-prod-4215e`
+The app uses **VS Code launch configurations** and **pre-launch tasks** to select environments:
 
-## Build Flavors
+Available configurations in VS Code (`.vscode/launch.json`):
+- **Development (backdrp-fm-dev)** - Default for local development
+- **Staging (backdrp-fm-staging)** - Pre-release testing
+- **Production (backdrp-fm-prod-4215e)** - Production (use with caution)
+- **Local Emulators (offline)** - Uses Firebase Emulators
 
-### Android
-The project uses Gradle product flavors:
-- `dev` - Development environment (app ID: `com.backdrpfm.app.dev`)
-- `staging` - Staging environment (app ID: `com.backdrpfm.app.staging`)
-- `prod` - Production environment (app ID: `com.backdrpfm.app`)
+### How It Works
 
-### iOS
-iOS schemes will automatically select the correct configuration based on the launch configuration.
+1. **VS Code tasks** (`.vscode/tasks.json`) copy environment-specific Firebase configs:
+   - `ios/Runner/Firebase/{Dev|Staging|Prod}/GoogleService-Info.plist` → `ios/Runner/GoogleService-Info.plist`
+   - `android/app/src/{dev|staging|prod}/google-services.json` → `android/app/google-services.json`
+
+2. **Launch configurations** specify:
+   - Which pre-launch task to run
+   - `--dart-define=ENVIRONMENT={development|staging|production}` flag
+
+3. The app reads the copied config files and connects to the correct Firebase project.
+
+This approach works across all platforms (iOS, Android, macOS, Web) without requiring platform-specific build flavors or schemes.
+
+## App IDs
+
+Each environment uses a different application ID:
+- Dev: `com.backdrpfm.app.dev`
+- Staging: `com.backdrpfm.app.staging`
+- Prod: `com.backdrpfm.app`

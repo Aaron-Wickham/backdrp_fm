@@ -15,11 +15,12 @@ Your BACKDRP.FM project now has a professional Git workflow configured.
 
 **Pre-commit Hook** (`.git/hooks/pre-commit`)
 - ✅ Runs `flutter analyze`
-- ✅ Checks code formatting
+- ✅ Checks code formatting (auto-formats and re-stages)
 - ✅ Runs unit tests
 - ✅ Detects debug statements
 - ✅ Prevents committing sensitive files
-- ⚠️ Warns about TODOs and main branch commits
+- ⚠️ Warns about TODOs
+- ❌ **BLOCKS commits to main branch** (exit code 1, not just warning)
 
 **Commit Message Hook** (`.git/hooks/commit-msg`)
 - ✅ Validates conventional commit format
@@ -221,11 +222,11 @@ chore/update-dependencies   # Maintenance
 ### Pre-commit Hook Runs:
 
 1. **Flutter Analyze** - Static code analysis
-2. **Format Check** - Ensures code is formatted
+2. **Format Check** - Ensures code is formatted (auto-formats and re-stages)
 3. **Unit Tests** - Runs all tests
 4. **Debug Statement Check** - Warns about print() statements
 5. **Sensitive Files** - Prevents committing secrets
-6. **Branch Warning** - Warns if committing to main
+6. **Main Branch Block** - **BLOCKS commits to main** (exit code 1)
 
 **To skip (emergency only):**
 ```bash

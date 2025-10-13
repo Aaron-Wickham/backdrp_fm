@@ -260,10 +260,11 @@ version: 1.2.0+10
 
 Automatically runs before each commit:
 - ✅ Flutter analyze
-- ✅ Code formatting check
+- ✅ Code formatting check (auto-formats and re-stages)
 - ✅ Unit tests
 - ✅ Debug statement detection
 - ✅ Sensitive file protection
+- ❌ **BLOCKS commits to main branch** (exit code 1, not just warning)
 
 **To skip (use sparingly):**
 ```bash
