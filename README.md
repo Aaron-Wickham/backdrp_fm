@@ -103,7 +103,7 @@ The app uses **three separate Firebase projects** for complete environment isola
 
 - `backdrp-fm-dev` - Development
 - `backdrp-fm-staging` - Staging/QA
-- `backdrop-fm` - Production
+- `backdrp-fm-prod-4215e` - Production
 
 **Firebase configuration files** (already generated):
 - `lib/firebase_options_dev.dart`
@@ -115,7 +115,7 @@ The app uses **three separate Firebase projects** for complete environment isola
 1. Download service account keys from Firebase Console:
    - Dev: https://console.firebase.google.com/project/backdrp-fm-dev/settings/serviceaccounts/adminsdk
    - Staging: https://console.firebase.google.com/project/backdrp-fm-staging/settings/serviceaccounts/adminsdk
-   - Prod: https://console.firebase.google.com/project/backdrop-fm/settings/serviceaccounts/adminsdk
+   - Prod: https://console.firebase.google.com/project/backdrp-fm-prod-4215e/settings/serviceaccounts/adminsdk
 
 2. Save keys to `functions/` directory:
    ```
@@ -133,7 +133,7 @@ firebase deploy --only firestore --project backdrp-fm-dev
 firebase deploy --only firestore --project backdrp-fm-staging
 
 # Production
-firebase deploy --only firestore --project backdrop-fm
+firebase deploy --only firestore --project backdrp-fm-prod-4215e
 ```
 
 ### Running the App
@@ -180,7 +180,7 @@ node seed-all-test-data.js --project=backdrp-fm-dev
 node seed-all-test-data.js --project=backdrp-fm-staging
 
 # Seed production
-node seed-all-test-data.js --project=backdrop-fm
+node seed-all-test-data.js --project=backdrp-fm-prod-4215e
 ```
 
 This creates:
@@ -189,7 +189,7 @@ This creates:
 - 2 test users
 - 2 test playlists
 
-**Note:** The seed script automatically uses the correct service account key and collection prefix based on the project ID.
+**Note:** The seed script automatically uses the correct service account key for the specified Firebase project.
 
 ## 🔧 Configuration
 
@@ -203,13 +203,16 @@ The app automatically loads environment-specific configuration:
 
 ### Firestore Collections
 
-Each environment uses separate collections for complete data isolation:
+**All environments use the same collection names** for consistent code across dev/staging/prod:
+- `videos`
+- `artists`
+- `users`
+- `playlists`
+- `mailingList`
 
-| Environment | Collection Prefix | Example |
-|-------------|------------------|---------|
-| Development | `dev_` | `dev_videos`, `dev_artists` |
-| Staging | `staging_` | `staging_videos`, `staging_artists` |
-| Production | _(none)_ | `videos`, `artists` |
+**Environment isolation is achieved through separate Firebase projects**, not collection prefixes.
+
+**Test data convention:** Document IDs use `dev_` prefix (e.g., `dev_video_001`, `dev_user_john`) to distinguish seeded test data from real user-generated content.
 
 ### Environment Indicators
 
@@ -369,7 +372,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow and guidelines.
 # Deploy to specific environment
 firebase deploy --only firestore --project backdrp-fm-dev
 firebase deploy --only firestore --project backdrp-fm-staging
-firebase deploy --only firestore --project backdrop-fm
+firebase deploy --only firestore --project backdrp-fm-prod-4215e
 ```
 
 ### Database Seeding
@@ -382,7 +385,7 @@ npm run seed:prod
 # Using Node directly
 node seed-all-test-data.js --project=backdrp-fm-dev
 node seed-all-test-data.js --project=backdrp-fm-staging
-node seed-all-test-data.js --project=backdrop-fm
+node seed-all-test-data.js --project=backdrp-fm-prod-4215e
 ```
 
 ## 📄 License

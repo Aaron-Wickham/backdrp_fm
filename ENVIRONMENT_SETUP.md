@@ -78,24 +78,26 @@ static FirebaseOptions get firebaseOptions {
 
 ### 3. Collection Naming
 
-Each environment uses different Firestore collection prefixes:
+**All environments use the same collection names** for consistent code across dev/staging/prod:
 
 ```dart
-// Development
-AppEnvironment.getCollectionName('videos') → 'dev_videos'
-
-// Staging
-AppEnvironment.getCollectionName('videos') → 'staging_videos'
-
-// Production
+// All environments return the same collection name
 AppEnvironment.getCollectionName('videos') → 'videos'
+AppEnvironment.getCollectionName('artists') → 'artists'
+AppEnvironment.getCollectionName('users') → 'users'
+AppEnvironment.getCollectionName('playlists') → 'playlists'
 ```
 
-| Environment | Videos | Artists | Users | Playlists |
-|-------------|--------|---------|-------|-----------|
-| Development | `dev_videos` | `dev_artists` | `dev_users` | `dev_playlists` |
-| Staging | `staging_videos` | `staging_artists` | `staging_users` | `staging_playlists` |
-| Production | `videos` | `artists` | `users` | `playlists` |
+**Collections used:**
+- `videos`
+- `artists`
+- `users`
+- `playlists`
+- `mailingList`
+
+**Environment isolation** is achieved through separate Firebase projects, not collection prefixes.
+
+**Test data convention:** Document IDs use `dev_` prefix (e.g., `dev_video_001`, `dev_user_john`) to distinguish seeded test data from real user-generated content within the same collections.
 
 ### 4. Environment Indicators
 
@@ -300,27 +302,35 @@ This creates the same data in `staging_*` collections.
 
 ## Firestore Security Rules
 
-The `firestore.rules` file contains separate rules for each environment:
+Security rules apply uniformly to all environments since collections are named identically:
 
 ```javascript
-// Development collections (less restrictive)
-match /dev_videos/{videoId} {
-  allow read: if resource.data.status == 'published' || isAdminDev();
-  allow create, update, delete: if isAdminDev();
-}
-
-// Staging collections (test production rules)
-match /staging_videos/{videoId} {
-  allow read: if resource.data.status == 'published' || isAdminStaging();
-  allow create, update, delete: if isAdminStaging();
-}
-
-// Production collections (most restrictive)
+// Videos - public read for published, admin write
 match /videos/{videoId} {
-  allow read: if resource.data.status == 'published' || isAdminProd();
-  allow create, update, delete: if isAdminProd();
+  allow read: if resource.data.status == 'published' || isAdmin();
+  allow create, update, delete: if isAdmin();
+}
+
+// Artists - public read, admin write
+match /artists/{artistId} {
+  allow read: if resource.data.active == true;
+  allow create, update, delete: if isAdmin();
+}
+
+// Users - authenticated read, owner/admin write
+match /users/{userId} {
+  allow read: if request.auth != null;
+  allow write: if request.auth.uid == userId || isAdmin();
+}
+
+// Playlists - public read, admin write
+match /playlists/{playlistId} {
+  allow read: if true;
+  allow create, update, delete: if isAdmin();
 }
 ```
+
+Admin role detection works the same across all environments by checking the user's `role` field in their user document.
 
 ## Testing Different Environments
 

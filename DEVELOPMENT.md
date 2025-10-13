@@ -41,18 +41,20 @@ In VS Code, click the Run & Debug icon (or press `F5`), then select from these c
 |------------|------------|---------|
 | Development | `backdrp-fm-dev` | Daily development, safe for experiments |
 | Staging | `backdrp-fm-staging` | Pre-release testing |
-| Production | `backdrp-fm-prod` | Live production data |
+| Production | `backdrp-fm-prod-4215e` | Live production data |
 
 ### Database Structure
 
-All environments now use the same Firestore collection structure:
+**All environments use identical collection names** (no prefixes):
 - `videos`
 - `users`
 - `artists`
 - `playlists`
 - `mailingList`
 
-**Note:** Test data document IDs use the `dev_` prefix (e.g., `dev_video_001`) to distinguish them from real user data.
+**Environment isolation is achieved via separate Firebase projects**, not collection naming.
+
+**Test data convention:** Document IDs use `dev_` prefix (e.g., `dev_video_001`, `dev_user_john`) to distinguish seeded test data from real user-generated content within the same collections.
 
 ### Seeding Test Data
 
@@ -73,7 +75,7 @@ FIRESTORE_EMULATOR_HOST=localhost:8080 node seed-all-test-data.js --project=demo
 
 - [Development Console](https://console.firebase.google.com/project/backdrp-fm-dev)
 - [Staging Console](https://console.firebase.google.com/project/backdrp-fm-staging)
-- [Production Console](https://console.firebase.google.com/project/backdrp-fm-prod)
+- [Production Console](https://console.firebase.google.com/project/backdrp-fm-prod-4215e)
 
 ### Security Rules
 
