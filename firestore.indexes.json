@@ -15,35 +15,7 @@
       ]
     },
     {
-      "collectionGroup": "dev_videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "featured",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "sortOrder",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "publishedDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "dev_videos",
       "queryScope": "COLLECTION",
       "fields": [
         {
@@ -75,25 +47,7 @@
       ]
     },
     {
-      "collectionGroup": "dev_videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "artistId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "publishedDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "dev_artists",
+      "collectionGroup": "artists",
       "queryScope": "COLLECTION",
       "fields": [
         {
@@ -107,81 +61,7 @@
       ]
     },
     {
-      "collectionGroup": "dev_playlists",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "featured",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "sortOrder",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "staging_videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "featured",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "sortOrder",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "staging_videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "publishedDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "staging_videos",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "artistId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "publishedDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "staging_artists",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "active",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "name",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "staging_playlists",
+      "collectionGroup": "playlists",
       "queryScope": "COLLECTION",
       "fields": [
         {
